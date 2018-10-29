@@ -51,6 +51,9 @@ class W50Pt0 extends LitElement {
         font-size: 18;
         line-height: 30px;
       }
+      section > h1 {
+        max-width: 100%;
+      }
       section:first-child {
         max-width: 100%;
         height: 550px;
@@ -63,6 +66,7 @@ class W50Pt0 extends LitElement {
         padding-top: 200px;
       }
       section:nth-child(2){
+        background-color: var(--section-bg);
         padding-bottom: 0;
       }
       section:nth-child(3){

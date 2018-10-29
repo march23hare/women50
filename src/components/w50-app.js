@@ -75,6 +75,10 @@ class W50App extends LitElement {
         
       }
       nav {
+        width: 100%;
+        height: 102px;
+        display: block;
+        position: relative;
         order: 2;
       }
       #outlet {
@@ -84,7 +88,7 @@ class W50App extends LitElement {
         order: 1;
       }
     </style>
-    <nav><w50-nav .currentPart="${this.currentPart - 1}" .routes="${this.partRoutes}"></w50-nav></nav>
+    <nav><w50-nav .currentPart="${this.currentPart - 1}" .routes="${this.partRoutes}" class="${this.currentPart === '/' ? 'homepage' : ''}"></w50-nav></nav>
     <div id="outlet" class="${this.currentPart === '/' ? 'main' : ''}"></div>
     `;
   }
