@@ -11,6 +11,9 @@ class W50Pt0 extends LitElement {
   constructor() {
     super();
   }
+  onAfterEnter(context) {
+    scrollTo(0, 0);
+  }
   render() {
     return html`
     ${SharedStyles}
@@ -22,23 +25,15 @@ class W50Pt0 extends LitElement {
         font-family: "SPMyungJo", serif;
         font-weight: bold;
       }
-      header {
+      .header {
         font-family: "NotoSansKR", sans-serif;
         font-weight: 500;
         padding: 0 34px;
         background-color: var(--section-bg);
         color: #ffffff;
         height: 34px;
-      }
-      header a:first-child {
-        float: left;
-      }
-      header a:last-child {
-        float: right;
-      }
-      header::after {
-        content: "";
-        clear: both;
+        display: flex;
+        justify-content: space-between;
       }
       .main {
         width: 100%;
@@ -58,7 +53,7 @@ class W50Pt0 extends LitElement {
         max-width: 100%;
         height: 550px;
         background-color: transparent, transparent;
-        background-image: radial-gradient(closest-side, rgba(51,33,12,0.25), rgba(51,33,12,0)), url("images/main_bg2.png");
+        background-image: radial-gradient(closest-side, rgba(51,33,12,0.25), rgba(51,33,12,0)), url("images/pt0_intro_pic.png");
         background-repeat: no-repeat, no-repeat;
         background-position-x: center, center;
         background-size: 178px 178px, cover;
@@ -109,11 +104,19 @@ class W50Pt0 extends LitElement {
         color: #ffffff;
       }
       p {
+        margin-top: 0;
+        text-align: center;
+      }
+      p:first-child {
         margin-top: 34px;
+      }
+      blockquote {
+        margin: 0;
+        text-align: center;
       }
     </style>
     <div>
-      <header>
+      <header class="header">
         <a href="#">아름다운 뉴스</a>
         <a href="#" class="sns-share"><span class="readable-hidden">공유</span></a>
       </header>
@@ -131,7 +134,11 @@ class W50Pt0 extends LitElement {
           <blockquote>지금까지 무엇을 하고 살았는지 모르겠어요.</blockquote>
         </section>
         <section>
-          <p>폐경을 전후로 신체적, 심리적, 사회적 변화를 겪고 있는 50세 이상 중년 여성들의 속마음, 누구나 한번쯤 들어보았을 거다. 엄마, 언니 어쩌면 나의 이야기일 수 밖에 없는 중년 여성의 현재를 그녀들에게 직접 들어보았다. 혼란과 위기를 느끼고 있는 중년 여성을 위한 지원 기관 정보도 정리했다.</p>
+          <p>폐경을 전후로 신체적, 심리적, 사회적 변화를 겪고 있는</p>
+          <p>50세 이상 중년 여성들의 속마음, 누구나 한번쯤 들어보았을 거다.</p>
+          <p>엄마, 언니 어쩌면 나의 이야기일 수 밖에 없는 중년 여성의 현재를</p>
+          <p>그녀들에게 직접 들어보았다. 혼란과 위기를 느끼고 있는</p>
+          <p>중년 여성을 위한 지원 기관 정보도 정리했다.</p>
         </section>
       </div>
     </div>`;

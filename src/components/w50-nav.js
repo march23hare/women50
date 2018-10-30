@@ -34,7 +34,7 @@ class W50Nav extends LitElement {
     <style>
       :host {        
         width: 100%;
-        
+        z-index: 999;
         position: fixed;
         background-color: #ffffff;
         width: 100%;

@@ -27,8 +27,9 @@ class W50App extends LitElement {
     this.partRoutes = partRoutes;
 
     const routes = partRoutes.concat([
+      {path: '/pt3/:elmid', component: 'w50-pt3'},
       {path: '/', component: 'w50-pt0'},
-      {path: '(.*)', component: 'w50-404'},
+      {path: '(.*)', component: 'w50-404'}
     ]);
     this.routes = routes;
 
@@ -41,7 +42,8 @@ class W50App extends LitElement {
 
   getCurrentPart() {
     const path = this.getPathname();
-    const part = path[path.length - 1];
+    let part = path[3];
+    part = part ? part : '/';
     return part;
   } 
 

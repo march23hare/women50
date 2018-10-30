@@ -51,6 +51,9 @@ class W50NavItem extends LitElement {
       :host(.current) {
         color: var(--point-pt${this.num});
       }
+      a:hover {
+        background-color: #f1efed;
+      }
       .num {
         border-bottom-width: 2px;
         border-bottom-style: solid;

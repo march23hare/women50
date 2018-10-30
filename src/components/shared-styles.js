@@ -5,6 +5,7 @@ export const SharedStyles = html`
   :host {
     display: block;
     box-sizing: border-box;
+    font-family: "NotoSansKR", sans-serif;
   }
   section, p, h1, h2, h3 {
     margin: 0;
@@ -17,9 +18,16 @@ export const SharedStyles = html`
     padding-bottom: 57px;
   }
   section > * {
-    max-width: 700px;
+    box-sizing: border-box;
     margin-left: auto;
     margin-right: auto;
+    max-width: 768px;
+    padding-left: 34px;
+    padding-right: 34px;
+  }
+  section > figure {
+    padding-left: 0;
+    padding-right: 0;
   }
   section:nth-child(2) {
     background-color: #f7f6f4;
@@ -28,11 +36,10 @@ export const SharedStyles = html`
     background-color: #f1efed;
   }
   section:last-child, section:first-child {
-    background-color: #ffffff;
+    background-color: transparent;
   }
   blockquote {
     margin: 0;
-    padding: 0;
     text-align: center;
   }
   blockquote::before {
@@ -43,7 +50,7 @@ export const SharedStyles = html`
   }
   h1 {
     margin-top: 23px;
-    margin-bottom: 62px;
+    margin-bottom: 60px;
     font-family: "nJoyStories", serif;
     font-weight: bold;
   }
@@ -69,6 +76,43 @@ export const SharedStyles = html`
   }
   p {
     margin-top: 20px;
+  }
+  figure {
+    max-width: 768px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  figcaption {
+    color: #a4a09d;
+    text-align: center;
+    font-size: 14px;
+  }
+  figcaption::before {
+    content: "<";
+  }
+  figcaption::after {
+    content: ">";
+  }
+  img {
+    width: 100%;
+  }
+  blockquote {
+    font-family: "SPMyungJo", serif;
+    max-width: 768px;
+    margin: 80px auto;
+    text-align: left;
+  }
+  @media screen and (max-width: 360px) {
+    section > *, blockquote {
+      margin-left: 20px;
+      margin-right: 20px;
+      padding: 0;
+    }
+    figure {
+      padding: 0;
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 </style>
 `;

@@ -1,5 +1,10 @@
 import { LitElement, html } from '@polymer/lit-element';
 
+import { SharedStyles } from './shared-styles';
+
+import './w50-jump';
+
+
 class W50Pt2 extends LitElement {
   static get properties() {
     return {
@@ -11,29 +16,33 @@ class W50Pt2 extends LitElement {
   constructor() {
     super();
   }
+  onAfterEnter(context) {
+    scrollTo(0, 0);
+  }
   render() {
     return html`
+    ${SharedStyles}
+    <style>
+    h1, blockquote {
+      color: #d4644a;
+    }
+    </style>
     <main class="main">
       <section>
         <h1>
           <span class="num">02</span>
           <span class="title">내 자리가 없다</span>
         </h1>
+        <figure>
+          <picture>
+            <img src="images/pt2_intro_pic.png" alt="intro image">
+          </picture>
+        </figure>
         <p>실업 급여를 받으며 구직 활동을 하고 있는 유선화(60세, 주부)씨는 최근 지역고용센터로부터 여성일자리 구인구직 박람회 안내 문자 한 통을 받았다. 참여 업체의 채용 직종을 살펴보니 택배 준비원, 온라인 판매원, 가사 도우미 등이 목록의 대부분을 차지하고 있었다.</p>
         <p>"퇴직 전 자율학습교사로 10년 가까이 일했었어요. 아직 일할 나이라고 생각해 구직 활동을 하고 있지만, 중년 여성을 위한 직업의 선택폭이 좁고 한정적인 점이 아쉽습니다."</p>
         <p>통계청 인구센서스 발표 자료에 따르면 50세~64세 중년 여성 인구는 2000년 약 316만 명에서 2015년 약 542만 명으로 큰 증가를 보이고 있다. 여성의 고용 성장율은 인구 성장율보다 더 높다. 55세~64세 여성 중 취업 상태에 있는 인구 수는 2000년 약 159만 명에서 2015년 315만 명으로 꾸준히 증가했다. 고용율의 호전과 달리 고용의 질은 낙관적이지 않다. 50~59세 여성들의 직종별 고용 분포를 살펴보면 여성의 노동 인구의 절반이 단순 노무직(23.8%)과 서비스직(22.7%)에 집중되어 있는 것이 현실. 사무직 종사자의 경우 13.8%로 23.9%로 집계된 남성의 절반 수준에 불과하다. 관리자의 경우는 더 현저한 차이를 보인다. 남성의 고용 분포율이 5.2%를 기록한 반면 여성은 고작 0.8%에 그치고 있다.</p>
-        <figure>
-          <picture>
-            <img src="images/graph1.png" alt="graph1">
-          </picture>
-          <figcaption>표 1. 50세~64세 중년 여성 인구 및 고용현황(2000년~2015년)</figcaption>
-        </figure>
-        <figure>
-          <picture>
-            <img src="images/graph2.png" alt="graph2">
-          </picture>
-          <figcaption>표 2. 50세~59세 중년기 여성과 남성의 직종별 고용상황 비교(2017년 기준)</figcaption>
-        </figure>
+        <div><w50-img src="images/graph1.jpg" alt="graph1" figcaption="표 1. 50세~64세 중년 여성 인구 및 고용현황(2000년~2015년)" desc="통계청에서 5년마다 실시하는 인구센서스 발표 자료에 따르면 50세에서 64세의 중년 여성은2000년 약 316만명에서 20015년 약 542만명으로 큰 폭으로 증가했음을 알 수 있다. 취업 상태에 있는 고용 인구 수도 2000년 약 159만명에서 2015년 약 315만명으로 성장했다."></w50-img></div>
+        <div><w50-img src="images/graph2.jpg" alt="graph2" figcaption="표 2. 50세~59세 중년기 여성과 남성의 직종별 고용상황 비교(2017년 기준)" desc="고용노동부가 고용형태별근로실태조사에서 조사한 50~59세 중년 여성의 직종별 고용 분포를 살펴보면 단순노무직 23.8%과 서비스직 22.7%에 집중되어 있는 것으로 나타난다. 이는 단순노무직 7.35%, 서비스직 1.51%인 남성과 비교해 큰 차이를 보이고 있다. 사무 종사자의 경우 여성은 13.8%로 집계된 반면 남성은 23.9%로 남성의 절반 정도 수준이며, 관리자는 여성의 경우 0.8%인 반면 남성은 5.2%로 남성 대비 매우 낮은 수준으로 나타났다."></w50-img></div>
       </section>
       <section>
         <h2>유리천장은 현실</h2>
@@ -63,11 +72,7 @@ class W50Pt2 extends LitElement {
         <p>50세 이후 세대를 위한 연구와 정책 계발은 세계적으로도 큰 관심사다. 미국의 '플러스 50 이니셔티브(Plus 50 Initiative)'는 지역 곳곳에 있는 2년제 교육기관인 커뮤니티 컬리지를 통해 중년 이후 세대의 재교육 취업을 지원하는 사업이다. 특히 교육, 건강, 사회사업 등 중년 세대에게 적합한 분야를 선별해 프로그램 운영하고 있다.</p>
         <p>1970년 대부터 고령화 현상에 대비한 일본에선 은퇴 세대의 사회 참여로 건강, 복지까지 해결 '삶의 보람 취업사업'이 주목 받고 있다. 은퇴자가 농업, 먹거리, 육아, 생활지원, 복지 등의 분야에서 취업 할 수 있는 기회를 연결하는 시스템이다. 중년과 노년 세대가 개인적으로는 삶의 보람을 느끼고, 사회적으로는 지역의 문제 해결에 기여할 수 있다는 점에서 효율적인 정책으로 평가 받고 있다.</p>
         <p>영국은 이 세대를 위한 정책이 가장 적극적으로 시행되는 나라 중 하나다. 지난 2011년 65세로 정해져 있던 법정 퇴직 연령을 폐지 한 것부터 시작된다. 2014년엔 50세 이상 노동자들이 더 길게, 더 오래 일하도록 지원하는 정책 풀러 워킹 라이브스(Fuller Working Lives)를 발표하고, 고령 구직자의 재취업을 적극 지원하는 50플러스 워크스(50 Plus Works) 등의 시스템을 가동하는 등 세밀하고 촘촘한 정책을 펼치고 있다. 민간 차원에서 진행하는 중년 여성을 위한 프로그램도 탄탄하다. 우먼 리터너즈(Women Returners)는 2~15년 이상 경력 단절을 겪고 있는 여성의 노동 시장 복귀를 돕는 민간 단체. 또 많은 기업들이 경력 단절 여성을 위한 리턴십(Returnship) 프로그램 운영하고 있다.</p>
-        <a class="jump" href="ch3.html">
-          <span>중년의 어려움 함께 해결해요</span>
-          <span>전국 시군구별 사회, 의료 서비스</span>
-          <span class="description">서비스 보러가기</span>
-        </a>
+        <w50-jump href="/pt3/search" color="#e5ae0e" description="중년의 어려움 함께 해결해요 전국 시군구별 사회, 의료 서비스" caption="서비스 보러가기"></w50-jump>
       </section>
       <section>
         <p>이러한 흐름들은 중년 여성들 자신이 '나이'와 생애 주기, 세대에 관한 고정 관념을 스스로 깰 필요가 있다는 사실을 일깨운다. 여성 자신이 50대를 인생의 하향 곡선이 시작되는 나이가 아니라 상승 곡선을 그릴 수 있는 역량이 충분한 나이라고 생각해야 한다. 트렌드 분석가이자 미래연구자 송은주 박사는 인식의 전환을 위해 '중년'이라는 부정적 이미지의 단어 대신 '후기 청년'이라는 새로운 명칭을 만들어 제시한다. 그녀는 저서 &lt;4050 후기 청년&gt;에서 새로운 인생을 찾는 중년을 위해 리더십 전문가 스튜어트 프리드만 박사의 메시지를 다음과 같이 전했다.</p>
@@ -75,11 +80,7 @@ class W50Pt2 extends LitElement {
       </section>
     </main>
     <footer class="footer">
-      <a class="next" href="ch3.html">
-        <span class="num">03</span>
-        <span class="title">중년 여성을 위하여</span>
-        <span class="description">다음 글 읽기</span>
-      </a>
+      <w50-next href="/pt3" num="3" caption="중년 여성을 위하여" color="#e5ae0e"></w50-next>
     </footer>`;
   }
 }

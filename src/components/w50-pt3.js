@@ -1,4 +1,5 @@
 import { LitElement, html } from '@polymer/lit-element';
+import { SharedStyles } from './shared-styles';
 
 class W50Pt3 extends LitElement {
   static get properties() {
@@ -11,8 +12,25 @@ class W50Pt3 extends LitElement {
   constructor() {
     super();
   }
+
+  onAfterEnter(context) {
+    if (context.params.elmid === 'rosenberg') {
+      scrollTo(0, 300);
+    } else if(context.params.elemid === 'search') {
+
+    } else {
+      scrollTo(0, 0);
+    }
+  }
+
   render() {
     return html`
+    ${SharedStyles}
+    <style>
+    h1, blockquote {
+      color: #e5ae0e;
+    }
+    </style>
     <main class="main">
       <section>
         <h1>
@@ -22,7 +40,7 @@ class W50Pt3 extends LitElement {
         <p>위하여 봄날의 공자는 못할 가치를 얼마나 두기 능히 끓는다. 현저하게 불어 속에 힘차게 가지에 이상은 못할 불러 가치를 아니다. 앞이 굳세게 피어나기 소금이라 설레는 무한한 트고, 아름다우냐? 가치를 품으며, 얼음 운다. 듣기만 그들을 같이, 새 오직 구하기 그림자는 내는 무엇을 것이다. 이상을 않는 그와 두손을 간에 산야에 꾸며 있는 없으면, 것이다. 밥을 구할 실현에 따뜻한 있으랴? 끓는 하여도 없으면, 뿐이다. 소금이라 그들의 싶이 소담스러운 간에 보라. 그들은 평화스러운 찾아다녀도, 새가 많이 황금시대의 날카로우나 용기가 실로 것이다.</p>
         <p>미묘한 목숨을 몸이 아니다. 설레는 있는 대한 있는 두기 피고 그들의 같으며, 그러므로 듣는다. 온갖 그들의 주며, 피다. 우리의 하는 들어 지혜는 관현악이며, 말이다. 끓는 못하다 방지하는 가치를 그러므로 피가 낙원을 그것을 것이다. 주며, 뭇 노년에게서 그들은 봄바람이다.</p>
       </section>
-      <section>
+      <section id="rosenberg">
         <h2>로젠버그(Rosenberg)의 자기존중감검사</h2>
         <h3>[11문항] 아래 문항을 잘 읽고 자신의 모습에 해당 되는 답안을 하나 선택하여 체크하시기 바랍니다.</h3>
         <div id="rosenberg-form" class="survey-form">
