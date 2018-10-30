@@ -2,6 +2,7 @@ import { LitElement, html } from '@polymer/lit-element';
 import { SharedStyles } from './shared-styles';
 
 import './w50-rosen';
+import './w50-search';
 
 class W50Pt3 extends LitElement {
   static get properties() {
@@ -32,6 +33,44 @@ class W50Pt3 extends LitElement {
     h1, blockquote {
       color: #e5ae0e;
     }
+    footer section:first-child {
+      padding: 22px 20px 30px;
+      background-color: #F7F6F4;
+    }
+
+    footer section:first-child ul {
+      list-style: disc inside ;
+    }
+    .credit {
+      max-width: 768px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .credit p {
+      margin: 0;
+      padding: 0;
+      font-size: 15px;
+      float: right;
+    }
+    .credit li span {
+      font-family: "NotoSansKR", sans-serif;
+      display: inline-block;
+      font-size: 15px;
+      vertical-align: text-top;
+    }
+    .credit li:nth-child(3) span {
+      height: 45px;
+    }
+    .credit li:nth-child(3) span:first-child {
+      width: 120px;
+    }
+    .credit li:nth-child(3) span:nth-child(2) {
+      width: 158px;
+    }
+    .credit .content {
+      margin-left: 8px;
+      color: #B3A090;
+    }
     </style>
     <main class="main">
       <section>
@@ -55,21 +94,22 @@ class W50Pt3 extends LitElement {
           사회적 지원, 의료 서비스
         </h2>
         <p>갱년기 여성을 위한 건강 교육을 해주는 보건소 프로그램부터 가정 내 관계 개선을 위한 프로그램을 운영하는 건강가정지원센터, 취업에 관한 지원이 가능한 여성개발원 등 찾아보면 중년 여성의 고민을 함께 나눌 다양한 기관이 있다는 걸 알고 있는가. 같은 상황을 겪고 있는 여성들을 만나 커뮤니티를 꾸릴 수도 있다. 당신에게 지금 필요한 지원과 지지는 무엇인지 생각해 본 후, 지역별 관련 서비스 기관을 찾아보자.</p>
+        <w50-search></w50-search>
+        <footer class="footer">
+          <div class="credit">
+            <p clss="issue-date">발행일: 2018.11.01.</p>
+            <ul>
+              <li><span class="title">기획</span><span class="content">김현주</span></li>
+              <li><span class="title">취재</span><span class="content">류진</span></li>
+              <li><span class="title">데이터 수집·분석</span><span class="content">권성은, 김진아, 이보경, 이승진, 최유빈</span></li>
+              <li><span class="title">디자인</span><span class="content">구도연</span></li>
+              <li><span class="title">개발</span><span class="content">임기완</span></li>
+              <li><span class="title">영상·일러스트</span><span class="content">VCRWORKS</span></li>
+            </ul>
+          </div>
+        </footer>
       </section>
-      <footer class="footer">
-      <section class="credit">
-        <p clss="issue-date">발행일: 2018.11.01.</p>
-        <ul>
-          <li><span class="title">기획</span><span class="content">김현주</span></li>
-          <li><span class="title">취재</span><span class="content">류진</span></li>
-          <li><span class="title">데이터 수집·분석</span><span class="content">권성은, 김진아, 이보경, 이승진, 최유빈</span></li>
-          <li><span class="title">디자인</span><span class="content">구도연</span></li>
-          <li><span class="title">개발</span><span class="content">임기완</span></li>
-          <li><span class="title">영상·일러스트</span><span class="content">VCRWORKS</span></li>
-        </ul>
-      </section>
-      <a class="next" href="main.html">맨 처음으로</a>
-    </footer>
+      <section style="padding: 0;"></section>
     </main>
     `;
   }
