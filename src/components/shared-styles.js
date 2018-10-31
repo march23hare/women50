@@ -28,7 +28,7 @@ export const SharedStyles = html`
     background-color: #f1efed;
   }
   section:last-child, section:first-child {
-    background-color: #ffffff;
+    background-color: transparent;
   }
   blockquote {
     margin: 0;
