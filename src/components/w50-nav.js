@@ -35,16 +35,12 @@ class W50Nav extends LitElement {
     ${SharedStyles}
     ${SharedLiStyles}
     <style>
-      :host {        
+      :host {
         width: 100%;
-        z-index: 999;
-        position: fixed;
+        z-index: 1000;
         background-color: #ffffff;
         width: 100%;
         box-shadow: 0 0 7px 0 rgba(0,0,0,0.4);
-      }
-      :host(.homepage) {
-        position: relative;
       }
       ul {
         display: flex;

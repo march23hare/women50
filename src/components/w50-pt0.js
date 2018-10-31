@@ -11,39 +11,34 @@ class W50Pt0 extends LitElement {
   constructor() {
     super();
   }
-  onAfterEnter(context) {
-    scrollTo(0, 0);
-  }
 
-  onEnded(e) {
-    console.log(e);
-    console.log('onEnded');
+  firstUpdated(){
     const slideIn = this.shadowRoot.querySelectorAll('.slide-in > blockquote');
     const slideIn2 = this.shadowRoot.querySelectorAll('.slide-in-2 > p');
     setTimeout(function () {
       slideIn[0].className = 'on';
-    }, 300);
+    }, 300 + 700);
     setTimeout(function () {
       slideIn[1].className = 'on';
-    }, 500);
+    }, 500 + 700);
     setTimeout(function () {
       slideIn[2].className = 'on';
-    }, 700);
+    }, 700 + 700);
     setTimeout(function () {
       slideIn2[0].className = 'on';
-    }, 900);
+    }, 900 + 700);
     setTimeout(function () {
       slideIn2[1].className = 'on';
-    }, 1100);
+    }, 1100 + 700);
     setTimeout(function () {
       slideIn2[2].className = 'on';
-    }, 1300);
+    }, 1300 + 700);
     setTimeout(function () {
       slideIn2[3].className = 'on';
-    }, 1500);
+    }, 1500 + 700);
     setTimeout(function () {
       slideIn2[4].className = 'on';
-    }, 1700);
+    }, 1700 + 700);
   }
 
   render() {
@@ -150,40 +145,49 @@ class W50Pt0 extends LitElement {
         opacity: 1;
       }
       section.video {
-        padding: 0;
-        box-sizing: border-box;
-        overflow: hidden;
+        position: relative;
         margin: 0;
+        padding: 0;
         max-width: 100%;
+        height: 550px;
       }
-      section.video > * {
+      section > div.video-container {
+        width: 100%;
+        max-width: 100%;
+        height: 550px;
+        overflow: hidden;
+        position: relative;
         padding: 0;
         margin: 0;
+      }
+      video {
+        left: 50%;
+        min-height: 100%;
+        min-width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      @media screen and (max-width: 977px) {
+        video {
+          min-height: 550px;
+          min-width: 978px;
+        }
       }
       .video-content {
-        width:100%;
         position: absolute;
-        z-index: 999;
         top: 250px;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, 0);
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
         background-image: radial-gradient(closest-side, rgba(51,33,12,0.25), rgba(51,33,12,0));
         background-repeat: no-repeat;
         background-position-x: center;
         background-size: 178px 178px;
         background-position-y: 100px;
-      }
-      video {
-        width: 100vw;
-        transform: translateY(calc((550px - 100%) / 2 ));
-      }
-      @media screen and (max-width: 1080px) {
-        video {
-          width: auto;
-          min-height: 550px;
-          transform: translateY(calc((550px - 100%) / 2 ));
-          transform: translateX(calc((720px - 100%) / 2 ));
-        }
       }
     </style>
     <div>
@@ -194,7 +198,7 @@ class W50Pt0 extends LitElement {
       <div class="main">
         <section class="video">
           <div class="video-container">
-            <video autoplay muted id="myVideo" @ended="${ e => this.onEnded(e) }">
+            <video autoplay muted id="myVideo">
               <source src="images/intro.mp4" type="video/mp4">
             </video>
           </div>
@@ -213,7 +217,7 @@ class W50Pt0 extends LitElement {
         </section>
         <section class="slide-in-2">
           <p>폐경을 전후로 신체적, 심리적, 사회적 변화를 겪고 있는</p>
-          <p>50세 이상 중년 여성들의 속마음, 누구나 한번쯤 들어보았을 거다.</p>
+          <p>50세 이상 중년 여성들의 속마음이다.</p>
           <p>엄마, 언니 어쩌면 나의 이야기일 수 밖에 없는 중년 여성의 현재를</p>
           <p>그녀들에게 직접 들어보았다. 혼란과 위기를 느끼고 있는</p>
           <p>중년 여성을 위한 지원 기관 정보도 정리했다.</p>

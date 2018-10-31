@@ -32,9 +32,6 @@ class W50Rosen extends LitElement {
         unchecked.push(current);
       }
     }
-    console.log(answers);
-    console.log(unchecked);
-    console.log(unchecked.length);
 
     if(!unchecked.length) {
       result.className = 'result show';
@@ -115,6 +112,18 @@ class W50Rosen extends LitElement {
         padding-left: 70px;
         padding-right: 70px;
         margin-bottom: 20px;
+      }
+      @media screen and (min-width: 361px) and (max-width: 768px){
+        .radio-group {
+          padding-left: 40px;
+          padding-right: 40px;
+        }
+      }
+      @media screen and (max-width: 360px){
+        .radio-group {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
       }
       label {
         display: block;
@@ -238,6 +247,31 @@ class W50Rosen extends LitElement {
       }
       div.result.show, div.res.show {
         display: block;
+      }
+
+      
+      @media screen and (max-width: 360px) {
+        :host {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+        #rosenberg-form {
+          padding-top: 30px;
+        }
+        div.info {
+          padding-bottom: 30px;
+        }
+        h3, h4, p {
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+        legend {
+          margin-left: 10px;
+        }
+        .button {
+          margin-left: 20px;
+          margin-right: 20px;
+        }
       }
       </style>
     <div id="rosenberg-form" class="survey-form">
@@ -378,7 +412,7 @@ class W50Rosen extends LitElement {
       </div>
     </div>
     <div class="info">
-      <p>※서울사이버대학교 심리상담센터에서 제공한 자아존중감검사입니다. 더 자세한 정보는 http://cec.iscu.ac.kr 을 통해 알아보세요.</p>
+      <p>※서울사이버대학교 심리상담센터에서 제공한 자기존중감검사입니다. 더 자세한 정보는 http://cec.iscu.ac.kr 을 통해 알아보세요.</p>
     </div>
     `;
   }

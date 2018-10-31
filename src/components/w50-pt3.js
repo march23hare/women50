@@ -17,13 +17,19 @@ class W50Pt3 extends LitElement {
   }
 
   onAfterEnter(context) {
-    /* if (context.params.elmid === 'rosenberg') {
-      scrollTo(0, 300);
-    } else if(context.params.elemid === 'search') {
-      scrollTo();
-    } else { */
-      scrollTo(0, 0);
-    /* } */
+    this.elmid = context.params.elmid;
+  }
+
+  firstUpdated() {
+    const ros = this.shadowRoot.querySelector('#rosenberg');
+    const sea = this.shadowRoot.querySelector('#search');
+    if (this.elmid === 'rosenberg') {
+      scrollTo(0, ros.offsetTop - 102);
+    } else if (this.elmid === 'search') {
+      scrollTo(0, sea.offsetTop);
+    } else {
+      window.scrollTo(0, 0);
+    }
   }
 
   render() {
@@ -82,12 +88,12 @@ class W50Pt3 extends LitElement {
         <p>이 장에는 이 과정에 도움이 될 두 가지 데이터 서비스를 실었다. 현재의 나를 점검할 수 있는 테스트와 미래의 나를 위한 지지와 지원을 받을 수 사회 기관 리스트. 각자에게 필요한 것이 무엇인지 파악하고 행동으로 옮기는데 필요한 정보다.</p>
       </section>
       <section id="rosenberg">
-        <h2><span>로젠버그의 자아존중감</span><br /><span>테스트로 나를 들여다 보세요</span></h2>
-        <p>자아존중감은 자신의 쓸모와 가치에 대한 평가와 자신을 인정하고 만족하는 감정을 통합한 개념이다. 자신이 유능하고 가치가 있다고 생각할수록 자아존중감을 높아진다. 건강하고 긍정적인 자아존중감을 갖고 있다면 자신의 힘든 상황을 이겨낼 수 있다.</p>
-        <p>아래는 서울사이버대학교 상담센터에서 제공하는 자아존중감검사이다. 로젠버그의 자기존중감검사를 활용한 테스트로 스스로를 얼마나 신뢰하고 존중하는지, 자신의 모습을 얼마나 안정되게 바라보며 확신을 갖고 있는지를 체크할 수 있다. 이를 통해 현재의 나는 어떤 상태인지 들여다보자. 혹 나에 대해 좋은 평가를 하지 못했다면 다시 한번 나를 다독이며 일으켜줄 때라고 생각하면 된다.</p>
+        <h2><span>로젠버그의 자기존중감</span><br /><span>테스트로 나를 들여다 보세요</span></h2>
+        <p>자기존중감은 자신의 쓸모와 가치에 대한 평가와 자신을 인정하고 만족하는 감정을 통합한 개념이다. 자신이 유능하고 가치가 있다고 생각할수록 자기존중감을 높아진다. 건강하고 긍정적인 자기존중감을 갖고 있다면 자신의 힘든 상황을 이겨낼 수 있다.</p>
+        <p>아래는 서울사이버대학교 상담센터에서 제공하는 자기존중감검사이다. 로젠버그의 자기존중감검사를 활용한 테스트로 스스로를 얼마나 신뢰하고 존중하는지, 자신의 모습을 얼마나 안정되게 바라보며 확신을 갖고 있는지를 체크할 수 있다. 이를 통해 현재의 나는 어떤 상태인지 들여다보자. 혹 나에 대해 좋은 평가를 하지 못했다면 다시 한번 나를 다독이며 일으켜줄 때라고 생각하면 된다.</p>
         <w50-rosen></w50-rosen>
       </section>
-      <section>
+      <section id="search">
         <h2>
           중년의 어려움 함께 해결해요<br>
           중년 여성을 위한 전국 시군구별<br>

@@ -71,7 +71,6 @@ class W50Search extends LitElement {
     console.log(slct2.value);
 
     if( slct1.value === 'seoul' && (slct2.value === 'seong-dong' || slct2.value === 'gangnam') ) {
-      console.log('success');
       this.shadowRoot.querySelector('.result').className = `result show ${slct2.value}`;
     }
   }
@@ -140,10 +139,10 @@ class W50Search extends LitElement {
         margin-left: 38px;
         margin-right: 38px;
       }
-      div.result, .res{
+      div.result .res{
         display: none;
       }
-      div.result.show, .res.show{
+      div.result.show .res{
         display: block;
       }
       div.result.show.gangnam > .seong-dong {
@@ -171,8 +170,43 @@ class W50Search extends LitElement {
         margin: 1em 0;
         padding: 0;
       }
+      
+      @media screen and (max-width: 360px) {
+        :host {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+        #search-form {
+          padding-top: 30px;
+          padding-bottom: 30px;
+        }
+        div.info {
+          padding-bottom: 30px;
+        }
+        #slct1 {
+          margin-bottom: 20px;
+        }
+        h3, h4, p {
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+        legend {
+          margin-left: 10px;
+        }
+        .button {
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+        div.result .res {
+          margin-left: 0;
+          margin-right: 0;
+        }
+        p{
+          word-break: break-word;
+        }
+      }
     </style>
-    <div>
+    <div id="search-form">
       <h3>
         <span>중년 여성을 위한</span><br />
         <span>지역별 지원 기관 찾기</span>

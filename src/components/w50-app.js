@@ -1,5 +1,6 @@
 import { LitElement, html } from '@polymer/lit-element';
 import { Router } from '@vaadin/router';
+import stickybits from 'stickybits';
 import './w50-nav';
 import './w50-pt0';
 import './w50-pt1';
@@ -20,7 +21,7 @@ class W50App extends LitElement {
     super();
 
     const partRoutes = [
-      {path: '/pt1', component: 'w50-pt1', caption: '엄마는 아프다'},
+      {path: '/', component: 'w50-pt1', caption: '엄마는 아프다'},
       {path: '/pt2', component: 'w50-pt2', caption: '내 자리가 없다'},
       {path: '/pt3', component: 'w50-pt3', caption: '중년 여성을 위하여'}
     ];
@@ -28,7 +29,6 @@ class W50App extends LitElement {
 
     const routes = partRoutes.concat([
       {path: '/pt3/:elmid', component: 'w50-pt3'},
-      {path: '/', component: 'w50-pt0'},
       {path: '(.*)', component: 'w50-404'}
     ]);
     this.routes = routes;
@@ -57,6 +57,24 @@ class W50App extends LitElement {
     window.addEventListener('vaadin-router-location-changed', (event) => {
       this.currentPart = this.getCurrentPart();
     });
+
+    const h = this.shadowRoot.querySelector('nav');
+    const d = this.shadowRoot.querySelector('w50-pt0');
+    let stuck = false;
+    
+    window.onscroll = function(e) {
+      let distance = h.offsetTop - window.pageYOffset;
+      let offset = window.pageYOffset;
+      let stickPoint = d.clientHeight;
+      if ( (distance <= 0) && !stuck) {
+        h.style.position = 'fixed';
+        h.style.top = '0';
+        stuck = true;
+      } else if (stuck && (offset <= stickPoint)){
+        h.style.position = 'static';
+        stuck = false;
+      }
+    }
   }
 
   render() {
@@ -74,24 +92,21 @@ class W50App extends LitElement {
         
         display: flex;
         flex-direction: column;
-        
       }
       nav {
         width: 100%;
         height: 102px;
         display: block;
-        position: relative;
         order: 2;
+        z-index: 999;
       }
       #outlet {
         order: 3;
       }
-      #outlet.main {
-        order: 1;
-      }
     </style>
-    <nav><w50-nav .currentPart="${this.currentPart - 1}" .routes="${this.partRoutes}" class="${this.currentPart === '/' ? 'homepage' : ''}"></w50-nav></nav>
-    <div id="outlet" class="${this.currentPart === '/' ? 'main' : ''}"></div>
+    <w50-pt0></w50-pt0>
+    <nav><w50-nav .currentPart="${this.currentPart === '/' ? 0 : this.currentPart - 1}" .routes="${this.partRoutes}" ></w50-nav></nav>
+    <div id="outlet"></div>
     `;
   }
 };

@@ -25,7 +25,8 @@
     "@polymer/polymer": "^3.0.0",
     "@vaadin/router": "^1.2.0-pre.2",
     "@webcomponents/webcomponentsjs": "^2.0.0",
-    "pwa-helpers": "^0.9.0"
+    "pwa-helpers": "^0.9.0",
+    "stickybits": "^3.5.7"
   },
   "devDependencies": {
     "axe-core": "^3.0.0",
