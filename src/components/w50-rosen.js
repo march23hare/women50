@@ -38,13 +38,13 @@ class W50Rosen extends LitElement {
 
     if(!unchecked.length) {
       result.className = 'result show';
-      if( answers <= 20 ) {
+      if( answers <= 29 ) {
         res[0].className = 'res show';
-      } else if ( answers > 20 && answers <= 30 ) {
+      } else if ( answers > 29 && answers <= 36 ) {
         res[1].className = 'res show';
-      } else if ( answers > 30 && answers <= 40 ) {
+      } else if ( answers > 36 && answers <= 44 ) {
         res[2].className = 'res show';
-      } else {
+      } else if ( answers > 44 ) {
         res[3].className = 'res show';
       }
     }
@@ -257,31 +257,31 @@ class W50Rosen extends LitElement {
       <fieldset class="rosenberg-field">
         <legend>2. 떄떄로 내가 무능하다는 생각이 든다.</legend>
         <div class="radio-group">
-          <label class="container" for="q2-1"><input type="radio" id="q2-1" value="1" name="q2" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
-          <label class="container" for="q2-2"><input type="radio" id="q2-2" value="2" name="q2" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
+          <label class="container" for="q2-1"><input type="radio" id="q2-1" value="5" name="q2" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
+          <label class="container" for="q2-2"><input type="radio" id="q2-2" value="4" name="q2" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
           <label class="container" for="q2-3"><input type="radio" id="q2-3" value="3" name="q2" /><span class="checkmark"></span>중간<br />정도이다</label>
-          <label class="container" for="q2-4"><input type="radio" id="q2-4" value="4" name="q2" /><span class="checkmark"></span>약간<br />그렇다</label>
-          <label class="container" for="q2-5"><input type="radio" id="q2-5" value="5" name="q2" /><span class="checkmark"></span>매우<br />그렇다</label>
+          <label class="container" for="q2-4"><input type="radio" id="q2-4" value="2" name="q2" /><span class="checkmark"></span>약간<br />그렇다</label>
+          <label class="container" for="q2-5"><input type="radio" id="q2-5" value="1" name="q2" /><span class="checkmark"></span>매우<br />그렇다</label>
         </div>
       </fieldset>
       <fieldset class="rosenberg-field">
         <legend>3. 가끔 내가 아닌 다른 사람이었으면 하는 생각이 든다.</legend>
         <div class="radio-group">
-          <label class="container" for="q3-1"><input type="radio" id="q3-1" value="1" name="q3" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
-          <label class="container" for="q3-2"><input type="radio" id="q3-2" value="2" name="q3" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
+          <label class="container" for="q3-1"><input type="radio" id="q3-1" value="5" name="q3" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
+          <label class="container" for="q3-2"><input type="radio" id="q3-2" value="4" name="q3" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
           <label class="container" for="q3-3"><input type="radio" id="q3-3" value="3" name="q3" /><span class="checkmark"></span>중간<br />정도이다</label>
-          <label class="container" for="q3-4"><input type="radio" id="q3-4" value="4" name="q3" /><span class="checkmark"></span>약간<br />그렇다</label>
-          <label class="container" for="q3-5"><input type="radio" id="q3-5" value="5" name="q3" /><span class="checkmark"></span>매우<br />그렇다</label>
+          <label class="container" for="q3-4"><input type="radio" id="q3-4" value="2" name="q3" /><span class="checkmark"></span>약간<br />그렇다</label>
+          <label class="container" for="q3-5"><input type="radio" id="q3-5" value="1" name="q3" /><span class="checkmark"></span>매우<br />그렇다</label>
         </div>
       </fieldset>
       <fieldset class="rosenberg-field">
         <legend>4. 나를 제대로 이해해주는 사람이 별로 없는것 같다.</legend>
         <div class="radio-group">
-          <label class="container" for="q4-1"><input type="radio" id="q4-1" value="1" name="q4" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
-          <label class="container" for="q4-2"><input type="radio" id="q4-2" value="2" name="q4" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
+          <label class="container" for="q4-1"><input type="radio" id="q4-1" value="5" name="q4" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
+          <label class="container" for="q4-2"><input type="radio" id="q4-2" value="4" name="q4" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
           <label class="container" for="q4-3"><input type="radio" id="q4-3" value="3" name="q4" /><span class="checkmark"></span>중간<br />정도이다</label>
-          <label class="container" for="q4-4"><input type="radio" id="q4-4" value="4" name="q4" /><span class="checkmark"></span>약간<br />그렇다</label>
-          <label class="container" for="q4-5"><input type="radio" id="q4-5" value="5" name="q4" /><span class="checkmark"></span>매우<br />그렇다</label>
+          <label class="container" for="q4-4"><input type="radio" id="q4-4" value="2" name="q4" /><span class="checkmark"></span>약간<br />그렇다</label>
+          <label class="container" for="q4-5"><input type="radio" id="q4-5" value="1" name="q4" /><span class="checkmark"></span>매우<br />그렇다</label>
         </div>
       </fieldset>
       <fieldset class="rosenberg-field">
@@ -297,21 +297,21 @@ class W50Rosen extends LitElement {
       <fieldset class="rosenberg-field">
         <legend>6. 내게는 자랑할 만한 점이 별로 없다.</legend>
         <div class="radio-group">
-          <label class="container" for="q6-1"><input type="radio" id="q6-1" value="1" name="q6" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
-          <label class="container" for="q6-2"><input type="radio" id="q6-2" value="2" name="q6" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
+          <label class="container" for="q6-1"><input type="radio" id="q6-1" value="5" name="q6" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
+          <label class="container" for="q6-2"><input type="radio" id="q6-2" value="4" name="q6" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
           <label class="container" for="q6-3"><input type="radio" id="q6-3" value="3" name="q6" /><span class="checkmark"></span>중간<br />정도이다</label>
-          <label class="container" for="q6-4"><input type="radio" id="q6-4" value="4" name="q6" /><span class="checkmark"></span>약간<br />그렇다</label>
-          <label class="container" for="q6-5"><input type="radio" id="q6-5" value="5" name="q6" /><span class="checkmark"></span>매우<br />그렇다</label>
+          <label class="container" for="q6-4"><input type="radio" id="q6-4" value="2" name="q6" /><span class="checkmark"></span>약간<br />그렇다</label>
+          <label class="container" for="q6-5"><input type="radio" id="q6-5" value="1" name="q6" /><span class="checkmark"></span>매우<br />그렇다</label>
         </div>
       </fieldset>
       <fieldset class="rosenberg-field">
         <legend>7. 때때로 내가 아주 쓸모없는 사람이라는 생각이 든다.</legend>
         <div class="radio-group">
-          <label class="container" for="q7-1"><input type="radio" id="q7-1" value="1" name="q7" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
-          <label class="container" for="q7-2"><input type="radio" id="q7-2" value="2" name="q7" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
+          <label class="container" for="q7-1"><input type="radio" id="q7-1" value="5" name="q7" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
+          <label class="container" for="q7-2"><input type="radio" id="q7-2" value="4" name="q7" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
           <label class="container" for="q7-3"><input type="radio" id="q7-3" value="3" name="q7" /><span class="checkmark"></span>중간<br />정도이다</label>
-          <label class="container" for="q7-4"><input type="radio" id="q7-4" value="4" name="q7" /><span class="checkmark"></span>약간<br />그렇다</label>
-          <label class="container" for="q7-5"><input type="radio" id="q7-5" value="5" name="q7" /><span class="checkmark"></span>매우<br />그렇다</label>
+          <label class="container" for="q7-4"><input type="radio" id="q7-4" value="2" name="q7" /><span class="checkmark"></span>약간<br />그렇다</label>
+          <label class="container" for="q7-5"><input type="radio" id="q7-5" value="1" name="q7" /><span class="checkmark"></span>매우<br />그렇다</label>
         </div>
       </fieldset>
       <fieldset class="rosenberg-field">
@@ -327,31 +327,31 @@ class W50Rosen extends LitElement {
       <fieldset class="rosenberg-field">
         <legend>9. 내 인생을 전반적으로 보면 실패한 것 같다.</legend>
         <div class="radio-group">
-          <label class="container" for="q9-1"><input type="radio" id="q9-1" value="1" name="q9" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
-          <label class="container" for="q9-2"><input type="radio" id="q9-2" value="2" name="q9" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
+          <label class="container" for="q9-1"><input type="radio" id="q9-1" value="5" name="q9" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
+          <label class="container" for="q9-2"><input type="radio" id="q9-2" value="4" name="q9" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
           <label class="container" for="q9-3"><input type="radio" id="q9-3" value="3" name="q9" /><span class="checkmark"></span>중간<br />정도이다</label>
-          <label class="container" for="q9-4"><input type="radio" id="q9-4" value="4" name="q9" /><span class="checkmark"></span>약간<br />그렇다</label>
-          <label class="container" for="q9-5"><input type="radio" id="q9-5" value="5" name="q9" /><span class="checkmark"></span>매우<br />그렇다</label>
+          <label class="container" for="q9-4"><input type="radio" id="q9-4" value="2" name="q9" /><span class="checkmark"></span>약간<br />그렇다</label>
+          <label class="container" for="q9-5"><input type="radio" id="q9-5" value="1" name="q9" /><span class="checkmark"></span>매우<br />그렇다</label>
         </div>
       </fieldset>
       <fieldset class="rosenberg-field">
         <legend>10. 가끔 내가 불안하다는 생각이 든다.</legend>
         <div class="radio-group">
-          <label class="container" for="q10-1"><input type="radio" id="q10-1" value="1" name="q10" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
-          <label class="container" for="q10-2"><input type="radio" id="q10-2" value="2" name="q10" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
+          <label class="container" for="q10-1"><input type="radio" id="q10-1" value="5" name="q10" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
+          <label class="container" for="q10-2"><input type="radio" id="q10-2" value="4" name="q10" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
           <label class="container" for="q10-3"><input type="radio" id="q10-3" value="3" name="q10" /><span class="checkmark"></span>중간<br />정도이다</label>
-          <label class="container" for="q10-4"><input type="radio" id="q10-4" value="4" name="q10" /><span class="checkmark"></span>약간<br />그렇다</label>
-          <label class="container" for="q10-5"><input type="radio" id="q10-5" value="5" name="q10" /><span class="checkmark"></span>매우<br />그렇다</label>
+          <label class="container" for="q10-4"><input type="radio" id="q10-4" value="2" name="q10" /><span class="checkmark"></span>약간<br />그렇다</label>
+          <label class="container" for="q10-5"><input type="radio" id="q10-5" value="1" name="q10" /><span class="checkmark"></span>매우<br />그렇다</label>
         </div>
       </fieldset>
       <fieldset class="rosenberg-field">
         <legend>11. 나보다 능력있는 사람이 많은 것 같다.</legend>
         <div class="radio-group">
-          <label class="container" for="q11-1"><input type="radio" id="q11-1" value="1" name="q11" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
-          <label class="container" for="q11-2"><input type="radio" id="q11-2" value="2" name="q11" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
+          <label class="container" for="q11-1"><input type="radio" id="q11-1" value="5" name="q11" /><span class="checkmark"></span>전혀<br />그렇지 않다</label>
+          <label class="container" for="q11-2"><input type="radio" id="q11-2" value="4" name="q11" /><span class="checkmark"></span>별로<br />그렇지 않다</label>
           <label class="container" for="q11-3"><input type="radio" id="q11-3" value="3" name="q11" /><span class="checkmark"></span>중간<br />정도이다</label>
-          <label class="container" for="q11-4"><input type="radio" id="q11-4" value="4" name="q11" /><span class="checkmark"></span>약간<br />그렇다</label>
-          <label class="container" for="q11-5"><input type="radio" id="q11-5" value="5" name="q11" /><span class="checkmark"></span>매우<br />그렇다</label>
+          <label class="container" for="q11-4"><input type="radio" id="q11-4" value="2" name="q11" /><span class="checkmark"></span>약간<br />그렇다</label>
+          <label class="container" for="q11-5"><input type="radio" id="q11-5" value="1" name="q11" /><span class="checkmark"></span>매우<br />그렇다</label>
         </div>
       </fieldset>
     </div>
