@@ -51,11 +51,11 @@ class W50Search extends LitElement {
             'desc': '정신건강 서비스 및 질환관리가 필요한 강남구 주민을 대상으로 초리상담 및 사례관리 서비스, 정신건강증진 사업 (산후우울증 예방 프로그램, 갱년기 우울증 예방 프로그램), 소아청소년 정신건강증진 사업, 지역사회 진단평가 등의 사업 진행.'
           },
           {
-            'name': '강남구 여성능력개발센터',
+            'name': '강남구여성능력개발센터',
             'address': '서울시 강남구 봉은사로320',
             'tel': '02-544-8440',
             'web': 'http://www.herstory.or.kr/',
-            'desc': '여성 취•창업 박람회, 경력단절 여성을 위한 재취업 프로그램, 진로코칭 프로그램 제공, 학점 은행제 프로그램 운영, 여성 창업을 위한 시설 지원 등의 사업 진행. (직업기초능력개발, 자격증'
+            'desc': '여성 취•창업 박람회, 경력단절 여성을 위한 재취업 프로그램, 진로코칭 프로그램 제공, 학점 은행제 프로그램 운영, 여성 창업을 위한 시설 지원 등의 사업 진행. (직업기초능력개발, 자격증교육, 취업창업, 전문가 양성, 미니강좌, 무료강좌, 정부지원프로그램, 학점은행제프로그램, 특별프로그램 등의 카테고리별 강좌를 지원함.)'
           }
         ]
       }
@@ -156,6 +156,10 @@ class W50Search extends LitElement {
         font-size: 14px;
         color: #b3a090;
       }
+      p.info a, p.info a:visited {
+        font-size: 14px;
+        color: #b3a090;
+      }
       div.res {
         margin-bottom: 40px;
       }
@@ -204,7 +208,7 @@ class W50Search extends LitElement {
             <p class="info">
               <span>${v.address}</span><br/>
               <span>${v.tel}</span><br/>
-              <span>${v.web}</span><br/>
+              <span><a href="${v.web}">${v.web}</a></span><br/>
             </p>
           </div>`;
         })}
@@ -219,7 +223,7 @@ class W50Search extends LitElement {
             <p class="info">
               <span>${v.address}</span><br/>
               <span>${v.tel}</span><br/>
-              <span>${v.web}</span><br/>
+              <span><a href="${v.web}">${v.web}</a></span><br/>
             </p>
           </div>`;
         })}

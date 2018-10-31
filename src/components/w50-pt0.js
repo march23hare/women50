@@ -14,8 +14,12 @@ class W50Pt0 extends LitElement {
   onAfterEnter(context) {
     scrollTo(0, 0);
   }
-  firstUpdated() {
+
+  onEnded(e) {
+    console.log(e);
+    console.log('onEnded');
     const slideIn = this.shadowRoot.querySelectorAll('.slide-in > blockquote');
+    const slideIn2 = this.shadowRoot.querySelectorAll('.slide-in-2 > p');
     setTimeout(function () {
       slideIn[0].className = 'on';
     }, 300);
@@ -25,6 +29,21 @@ class W50Pt0 extends LitElement {
     setTimeout(function () {
       slideIn[2].className = 'on';
     }, 700);
+    setTimeout(function () {
+      slideIn2[0].className = 'on';
+    }, 900);
+    setTimeout(function () {
+      slideIn2[1].className = 'on';
+    }, 1100);
+    setTimeout(function () {
+      slideIn2[2].className = 'on';
+    }, 1300);
+    setTimeout(function () {
+      slideIn2[3].className = 'on';
+    }, 1500);
+    setTimeout(function () {
+      slideIn2[4].className = 'on';
+    }, 1700);
   }
 
   render() {
@@ -121,7 +140,7 @@ class W50Pt0 extends LitElement {
         margin: 0;
         text-align: center;
       }
-      blockquote {
+      blockquote, p {
         transform: translateY(20px);
         opacity: 0;
         transition: all 1s ease-in;
@@ -158,7 +177,7 @@ class W50Pt0 extends LitElement {
         width: 100vw;
         transform: translateY(calc((550px - 100%) / 2 ));
       }
-      @media screen and (max-width: 1280px) {
+      @media screen and (max-width: 1080px) {
         video {
           width: auto;
           min-height: 550px;
@@ -175,7 +194,7 @@ class W50Pt0 extends LitElement {
       <div class="main">
         <section class="video">
           <div class="video-container">
-            <video autoplay muted id="myVideo">
+            <video autoplay muted id="myVideo" @ended="${ e => this.onEnded(e) }">
               <source src="images/intro.mp4" type="video/mp4">
             </video>
           </div>
@@ -192,7 +211,7 @@ class W50Pt0 extends LitElement {
           <blockquote>갑자기 눈물이 왈칵 나네요.</blockquote>
           <blockquote>지금까지 무엇을 하고 살았는지 모르겠어요.</blockquote>
         </section>
-        <section>
+        <section class="slide-in-2">
           <p>폐경을 전후로 신체적, 심리적, 사회적 변화를 겪고 있는</p>
           <p>50세 이상 중년 여성들의 속마음, 누구나 한번쯤 들어보았을 거다.</p>
           <p>엄마, 언니 어쩌면 나의 이야기일 수 밖에 없는 중년 여성의 현재를</p>

@@ -17,13 +17,13 @@ class W50Pt3 extends LitElement {
   }
 
   onAfterEnter(context) {
-    if (context.params.elmid === 'rosenberg') {
+    /* if (context.params.elmid === 'rosenberg') {
       scrollTo(0, 300);
     } else if(context.params.elemid === 'search') {
-
-    } else {
+      scrollTo();
+    } else { */
       scrollTo(0, 0);
-    }
+    /* } */
   }
 
   render() {
