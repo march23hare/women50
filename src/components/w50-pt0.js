@@ -14,6 +14,19 @@ class W50Pt0 extends LitElement {
   onAfterEnter(context) {
     scrollTo(0, 0);
   }
+  firstUpdated() {
+    const slideIn = this.shadowRoot.querySelectorAll('.slide-in > blockquote');
+    setTimeout(function () {
+      slideIn[0].className = 'on';
+    }, 300);
+    setTimeout(function () {
+      slideIn[1].className = 'on';
+    }, 500);
+    setTimeout(function () {
+      slideIn[2].className = 'on';
+    }, 700);
+  }
+
   render() {
     return html`
     ${SharedStyles}
@@ -43,21 +56,15 @@ class W50Pt0 extends LitElement {
         box-sizing: border-box;
         max-width: 700px;
         margin: 0 auto;
-        font-size: 18;
+        font-size: 18px;
         line-height: 30px;
       }
       section > h1 {
         max-width: 100%;
       }
       section:first-child {
-        max-width: 100%;
+        width: 100%;
         height: 550px;
-        background-color: transparent, transparent;
-        background-image: radial-gradient(closest-side, rgba(51,33,12,0.25), rgba(51,33,12,0)), url("images/pt0_intro_pic.png");
-        background-repeat: no-repeat, no-repeat;
-        background-position-x: center, center;
-        background-size: 178px 178px, cover;
-        background-position-y: 314px, 55%;
         padding-top: 200px;
       }
       section:nth-child(2){
@@ -110,9 +117,54 @@ class W50Pt0 extends LitElement {
       p:first-child {
         margin-top: 34px;
       }
-      blockquote {
+      .slide-in > blockquote {
         margin: 0;
         text-align: center;
+      }
+      blockquote {
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 1s ease-in;
+      }
+      .on {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+      section.video {
+        padding: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+        margin: 0;
+        max-width: 100%;
+      }
+      section.video > * {
+        padding: 0;
+        margin: 0;
+      }
+      .video-content {
+        width:100%;
+        position: absolute;
+        z-index: 999;
+        top: 250px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-image: radial-gradient(closest-side, rgba(51,33,12,0.25), rgba(51,33,12,0));
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-size: 178px 178px;
+        background-position-y: 100px;
+      }
+      video {
+        width: 100vw;
+        transform: translateY(calc((550px - 100%) / 2 ));
+      }
+      @media screen and (max-width: 1280px) {
+        video {
+          width: auto;
+          min-height: 550px;
+          transform: translateY(calc((550px - 100%) / 2 ));
+          transform: translateX(calc((720px - 100%) / 2 ));
+        }
       }
     </style>
     <div>
@@ -121,14 +173,21 @@ class W50Pt0 extends LitElement {
         <a href="#" class="sns-share"><span class="readable-hidden">공유</span></a>
       </header>
       <div class="main">
-        <section>
-          <h1>
-            <span>인생 2막,</span>
-            <span>여자 나이</span>
-            <span> 50</span>
-          </h1>
+        <section class="video">
+          <div class="video-container">
+            <video autoplay muted id="myVideo">
+              <source src="images/intro.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-content">
+            <h1>
+              <span>인생 2막,</span>
+              <span>여자 나이</span>
+              <span> 50</span>
+            </h1>
+          </div>
         </section>
-        <section>
+        <section class="slide-in">
           <blockquote>가슴 속에서부터 화가 올라와요.</blockquote>
           <blockquote>갑자기 눈물이 왈칵 나네요.</blockquote>
           <blockquote>지금까지 무엇을 하고 살았는지 모르겠어요.</blockquote>

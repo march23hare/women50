@@ -33,7 +33,24 @@ class W50Pt1 extends LitElement {
       h1, blockquote {
         color: #669aa7;
       }
-      
+      section {
+        position: relative;
+      }
+      .video-wrapper {
+        position: relative;
+        padding-bottom: 25%;
+        padding-top: 100px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        height: 0;
+      }
+      .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
     </style>
     <main class="main">
       <section>
@@ -56,13 +73,9 @@ class W50Pt1 extends LitElement {
         <blockquote>두 아이가 모두 대학생이 되고 나니까, 내가 해야 할 일이 감쪽같이 없어진 거예요.</blockquote>
         <p>급격한 노화, 가정 안에서 역할 축소로 인한 고민은 중년기 여성이라면 누구도 예외일 수 없는 공통의 상황이다. 실제로 50-65세의 중년 여성들을 만나 나눈 인터뷰에서 대다수가 자녀의 성장과 독립으로 인해 슬픔, 외로움, 상실감을 겪는 '빈둥지 증후군(empty nest syndrome)'을  호소했다. 일산에 거주하는 김주미(52세, 주부) 씨는 자녀 둘을 모두 대학교에 진학시킨 후 우울감이 찾아왔다고 말한다.</p>
         <p>"결혼과 동시에 직장을 그만 두고 육아와 가사에 전념했어요. 둘째 아이까지 대학에 가기 전까진 자녀 교육에 온 시간과 마음을 쏟았죠. 마치 업무에 매진하는 직장인처럼요. 그럴 수 밖에 없는 게, 아이들이 이룬 성과가 곧 엄마의 성적표였으니까요. 두 아이가 모두 대학생이 되고 나니까, 내가 해야 할 일이 감쪽같이 없어진 거예요. 집안일은 그냥 허드렛일이죠. 거기에 애들은 자기 삶이 생겨서 엄마의 도움을 필요로 하기는커녕, 대화도 잘 안 하려고 하고요. 물론 처음 반 년 정도는 친구들도 자주 만나고 여행도 가고 했죠. 그것도 한계가 있더라고요. 이런 여유를 기꺼이, 잘 즐기는 사람들도 있겠지만, 저는 마냥 그럴 순 없는 성격이거든요. 급기야 나중엔, 잉여 인간이 된 기분마저 들더군요."</p>
-        <figure>
-          <img src="images/video_placeholder.png" title="Your browser does not support the video tag">
-          <!-- <video>
-            <source src="/resources/video/product-hero.mp4.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-            <source src="/resources/video/product-hero.webmhd.webm" type='video/webm; codecs="vp8, vorbis"' />
-          </video> -->
-        </figure>
+        <div class="video-wrapper">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/fbCpIvBvt2w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
         <p>아들의 결혼을 앞둔 김혜령(56세, 주부) 씨 역시 자녀와의 관계 변화를 인정해야 한다는 사실을 잘 알고 있지만 마음처럼 쉽지 않다고 토로한다.</p>
         <p>"아들에게 여자친구가 생긴 후부터 매사 서운했어요. 아이가 평일엔 지방 근무를 해서 주말에나 겨우 얼굴을 볼 수 있는데, 연애를 시작한 후엔 그마저도 보기가 어려웠거든요. 모든 스케줄이 여자친구한테 맞춰져 있는 것 같다고 할까? 심지어 엄마가 허리를 다쳐서 병원에 입원했는데도, 밤 늦게 잠깐 와서 얼굴만 비추는 거예요. 감정을 풀어보려고 얘기 좀 하려 하면 자꾸 여자 친구 이야기로 흘러가니까 슬금슬금 대화도 피하고. 관계가 점점 단절되는 거죠. 물론 둘이 잘 만나서, 이제 날짜도 잡고, 결혼 준비도 하고 있어요. 내가 아들을 잘 떠나 보내고, 마음을 비우는 게 맞다는 건 알아요. 그래도 엄마로서 더 해줄 수 있는 일, 아이의 따뜻한 말 한마디 이런 게 아쉬운 건 사실이에요."</p>
       </section>

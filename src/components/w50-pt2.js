@@ -25,6 +25,24 @@ class W50Pt2 extends LitElement {
     <style>
     h1, blockquote {
       color: #d4644a;
+    }    
+    section {
+      position: relative;
+    }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 25%;
+      padding-top: 100px;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      height: 0;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
     </style>
     <main class="main">
@@ -48,13 +66,9 @@ class W50Pt2 extends LitElement {
         <h2>유리천장은 현실</h2>
         <p>중년의 시기에 사회적, 직업적인 하강과 은퇴를 감지하는 것은 자연스러운 수순이지만 여성이 맞닥뜨리는 현실은 남성보다 좀 더 어둡다. 컨설팅 그룹에서 일하다가 이직을 준비 중인 권성은(52세, 데이터 마이닝 & 컨설팅 전문가) 씨는 여성이 남성보다 직업적 하강을 좀 더 빨리 느낄 수 밖에 없다고 말한다.</p>
         <p>"40대 후반에서 50대 초반, 직장 안에서 관리자, 임원, 경영진의 역할을 하게 되죠. 그 전엔 실무를 담당하기 때문에 경험, 노련함으로 입지를 다질 수 있어요. 그런데 여성이 그 단계를 넘어 회사의 운영, 경영에 참여하는 자리에 올라가면 동료, 상사가 대부분 남성인 상황이에요. 이 직무에선 실무적 역할 보다는 상사와의 '케미스트리'를 맞춰 의사 결정을 하고 일을 추진하는 것이 요구되는 직무 능력이죠. 충성심도 중요하고요. 그런데 여성 임원들은 우선 남성 상사와의 교감, 교류 등에서부터 어려움을 겪어요. 남성이 선호하는 커뮤니케이션 방식, 예를 들어 골프나 등산 같은 레저, 스포츠 활동에 참여가 어렵다 보니 남성보다 상대적으로 퍼포먼스가 자꾸 떨어지게 돼요. '내 능력이 부족한가?'하는 회의감까지 들기도 하고요. 그 밖에 여성 임원을 주요 분야보다는 신규 사업을 전개하는 데 필요한 '스페어 임원'으로 뽑는다든가, 리스크가 높은 일에 배정하는 경우도 왕왕 있어요."</p>
-        <figure>
-          <img src="images/video_placeholder.png" title="Your browser does not support the video tag">
-          <!-- <video>
-            <source src="/resources/video/product-hero.mp4.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-            <source src="/resources/video/product-hero.webmhd.webm" type='video/webm; codecs="vp8, vorbis"' />
-          </video> -->
-        </figure>
+        <div class="video-wrapper">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/SXJaei1Fv2M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
         <blockquote>여성은 적극적으로 자신의 의사를 표현하지 않으면 '그냥 저 정도 선에서 은퇴하겠지'라고 바라보는 시각이 있어요.</blockquote>
         <p>외국계 기업의 경우 남성 중심의 업무 문화, 경력 설계, 보상 체계에서 국내 기업보다는 비교적 유연하지만 중년 여성 임원에 대한 고정 관념은 여전히 존재하는 것이 사실. 정은영 (49, 금융계기업 커뮤니케이션 이사) 씨는 여성을 향한 직장 편견 등이 아쉽다고 말한다.</p>
         <p>"같은 직위라도 남성은 '당연히' 경영진으로 승진하는 등의 '야망'을 가진 존재로 대우받지만 여성은 적극적으로 자신의 의사를 표현하지 않으면 '그냥 저 정도 선에서 은퇴하겠지'라고 바라보는 시각이 있어요. 또는 '여자는 자기 일만 하다가 퇴근시간 되면 그냥 집으로 가버리는 직장인'으로 바라보는 편견도 엄연히 존재하고요. 여성이 자신의 능력으로 이사회의 구성원으로 승진해도, 재무나 영업 등 기업의 주요 분야보다는 홍보, 마케팅, 법무 등 지원 분야에 한정되는 경우가 많은 것도 사실이에요."</p>
