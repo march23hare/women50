@@ -24,6 +24,9 @@ class W50Nav extends LitElement {
   firstUpdated() {
     this.addEventListener('changePart', e => {
       this.currentPart = e.detail.part;
+      if(this.currentPart === '/') {
+        this.currentPart = 1;
+      }
     });
   }
   

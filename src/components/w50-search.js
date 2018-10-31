@@ -8,6 +8,9 @@ class W50Search extends LitElement {
     return {
       db: {
         type: Array
+      },
+      slct2: {
+        type: String
       }
     };
   }
@@ -31,15 +34,45 @@ class W50Search extends LitElement {
             'web': 'http://www.mindcare.or.kr/',
             'desc': '만성정신장애인관리사업, 아동/청소년 정신건강 사업, 정신건강증진사업, 정신보건 환경조성사업 진행.'
           }
+        ],
+        'gangnam': [
+          {
+            'name': '서울과학기술새일센터(경력개발형)',
+            'address': '서울특별시 강남구 테헤란로7길 7-0',
+            'tel': '02-6258-5012',
+            'web': 'https://www.wiset.or.kr/main.jsp',
+            'desc': '여성과학기술인 법/제도 운영 지원, 여성과학기술인 일자리 지원, 여성과학기술인 교육/경력지원, 이공계 여성인재 육성, 연대 교류/협력 및 포상 사업, 정책연구 조사 및 포럼, 과학기술 젠더 혁신 등의 사업 진행.'
+          },
+          {
+            'name': '강남구정신건강복지센터',
+            'address': '서울특별시 강남구 일원9길 38',
+            'tel': '02-2226-0344',
+            'web': 'http://www.smilegn.kr/design/default/intro.htm',
+            'desc': '정신건강 서비스 및 질환관리가 필요한 강남구 주민을 대상으로 초리상담 및 사례관리 서비스, 정신건강증진 사업 (산후우울증 예방 프로그램, 갱년기 우울증 예방 프로그램), 소아청소년 정신건강증진 사업, 지역사회 진단평가 등의 사업 진행.'
+          },
+          {
+            'name': '강남구 여성능력개발센터',
+            'address': '서울시 강남구 봉은사로320',
+            'tel': '02-544-8440',
+            'web': 'http://www.herstory.or.kr/',
+            'desc': '여성 취•창업 박람회, 경력단절 여성을 위한 재취업 프로그램, 진로코칭 프로그램 제공, 학점 은행제 프로그램 운영, 여성 창업을 위한 시설 지원 등의 사업 진행. (직업기초능력개발, 자격증'
+          }
         ]
       }
     };
   }
 
   onSearch(e) {
+    const slct1 = this.shadowRoot.querySelector('#slct1');
     const slct2 = this.shadowRoot.querySelector('#slct2');
-    if( slct2.value ) {
-      this.shadowRoot.querySelector('.result').className = 'result show';
+    this.shadowRoot.querySelector('.result').className = `result`;
+    console.log('onSearch');
+    console.log(slct1.value);
+    console.log(slct2.value);
+
+    if( slct1.value === 'seoul' && (slct2.value === 'seong-dong' || slct2.value === 'gangnam') ) {
+      console.log('success');
+      this.shadowRoot.querySelector('.result').className = `result show ${slct2.value}`;
     }
   }
 
@@ -107,11 +140,17 @@ class W50Search extends LitElement {
         margin-left: 38px;
         margin-right: 38px;
       }
-      div.result, div.res {
+      div.result, .res{
         display: none;
       }
-      div.result.show, div.res.show {
+      div.result.show, .res.show{
         display: block;
+      }
+      div.result.show.gangnam > .seong-dong {
+        display: none;
+      }
+      div.result.show.seong-dong > .gangnam {
+        display: none;
       }
       p.info span {
         font-size: 14px;
@@ -137,7 +176,7 @@ class W50Search extends LitElement {
       <P>원화는 지역을 검색하고<br />도움받을 수 있는 기관을 찾아보세요</P>
       <div class="select-group">
         <div class="select">
-          <select name="slct" id="slct1">
+          <select name="slct" id="slct1" @change="${ e => this.onSearch(e) }">
             <option>시·도 선택</option>
             <option value="seoul">서울특별시</option>
             <option value="gangwon">강원도</option>
@@ -149,7 +188,7 @@ class W50Search extends LitElement {
             <option>시·군·구 선택</option>
             <option value="gangnam">강남구</option>
             <option value="gangdong">강동구</option>
-            <option value="seongdong">성동구</option>
+            <option value="seong-dong">성동구</option>
           </select>
         </div>
       </div>
@@ -158,7 +197,7 @@ class W50Search extends LitElement {
           return html`
           <style>
           </style>
-          <div class="res show">
+          <div class="res seong-dong show">
             <h4>${v.name}</h4>
             <hr size="2px" />
             <p>${v.desc}</p>
@@ -167,9 +206,24 @@ class W50Search extends LitElement {
               <span>${v.tel}</span><br/>
               <span>${v.web}</span><br/>
             </p>
-          </div>
-          `;
+          </div>`;
         })}
+        ${this.db['seoul']['gangnam'].map((v) => {
+          return html`
+          <style>
+          </style>
+          <div class="res gangnam show">
+            <h4>${v.name}</h4>
+            <hr size="2px" />
+            <p>${v.desc}</p>
+            <p class="info">
+              <span>${v.address}</span><br/>
+              <span>${v.tel}</span><br/>
+              <span>${v.web}</span><br/>
+            </p>
+          </div>`;
+        })}
+        
       </div>
     </div>
     `;

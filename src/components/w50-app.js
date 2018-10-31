@@ -63,7 +63,7 @@ class W50App extends LitElement {
     return html`
     <style>
       :host {
-        --not-current: #d7cabe;
+        --not-current: #b3a090;
         --point-pt1: #669aa7;
         --point-pt2: #d4644a;
         --point-pt3: #e5ae0e;
