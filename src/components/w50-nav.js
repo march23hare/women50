@@ -24,6 +24,9 @@ class W50Nav extends LitElement {
   firstUpdated() {
     this.addEventListener('changePart', e => {
       this.currentPart = e.detail.part;
+      if(this.currentPart === '/') {
+        this.currentPart = 1;
+      }
     });
   }
   
@@ -34,7 +37,7 @@ class W50Nav extends LitElement {
     <style>
       :host {        
         width: 100%;
-        
+        z-index: 999;
         position: fixed;
         background-color: #ffffff;
         width: 100%;
