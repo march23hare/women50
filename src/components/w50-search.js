@@ -190,7 +190,9 @@ class W50Search extends LitElement {
   onSearch1(e) {
     const slct1 = this.shadowRoot.querySelector('#slct1');
     const slct2 = this.shadowRoot.querySelector('#slct2');
+    const result = this.shadowRoot.querySelector('.result');
 
+    result.innerHTML = '';
     slct2.innerHTML = '<option>시·군·구 선택</option>';
     
     const slct2Options = slct1.value === '시·도 선택' ? null : Object.keys(this.db[slct1.value]);
@@ -202,7 +204,7 @@ class W50Search extends LitElement {
   onSearch2(e) {
     const slct1 = this.shadowRoot.querySelector('#slct1');
     const slct2 = this.shadowRoot.querySelector('#slct2');
-    const result = this.shadowRoot.querySelector('.result');    
+    const result = this.shadowRoot.querySelector('.result');
 
     const resultArray = ((slct1.value === '시·도 선택' || slct2.value === '시·군·구 선택') ? null : this.db[slct1.value][slct2.value]);
     
