@@ -1,6 +1,5 @@
 import { LitElement, html } from '@polymer/lit-element';
 import { Router } from '@vaadin/router';
-import stickybits from 'stickybits';
 import './w50-nav';
 import './w50-pt0';
 import './w50-pt1';
