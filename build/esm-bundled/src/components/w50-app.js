@@ -227,16 +227,12 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
     ${SharedStyles}
     ${SharedLiStyles}
     <style>
-      :host {        
+      :host {
         width: 100%;
-        z-index: 999;
-        position: fixed;
+        z-index: 1000;
         background-color: #ffffff;
         width: 100%;
         box-shadow: 0 0 7px 0 rgba(0,0,0,0.4);
-      }
-      :host(.homepage) {
-        position: relative;
       }
       ul {
         display: flex;
@@ -255,7 +251,7 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
         <li>
           <w50-nav-item class="${this.currentPart===i?"current":""}" @click="${()=>{this.currentPart=i}}" .num="${i+1}" .caption="${v.caption}" .path="${v.path}" .isCurrent="${this.currentPart===i}"></w50-nav-item>
         </li>`})}
-    </ul>`}}customElements.define("w50-nav",W50Nav);class W50Pt0 extends LitElement{static get properties(){return{}}constructor(){super()}onAfterEnter(){scrollTo(0,0)}onEnded(e){console.log(e);console.log("onEnded");const slideIn=this.shadowRoot.querySelectorAll(".slide-in > blockquote"),slideIn2=this.shadowRoot.querySelectorAll(".slide-in-2 > p");setTimeout(function(){slideIn[0].className="on"},300);setTimeout(function(){slideIn[1].className="on"},500);setTimeout(function(){slideIn[2].className="on"},700);setTimeout(function(){slideIn2[0].className="on"},900);setTimeout(function(){slideIn2[1].className="on"},1100);setTimeout(function(){slideIn2[2].className="on"},1300);setTimeout(function(){slideIn2[3].className="on"},1500);setTimeout(function(){slideIn2[4].className="on"},1700)}render(){return html`
+    </ul>`}}customElements.define("w50-nav",W50Nav);class W50Pt0 extends LitElement{static get properties(){return{}}constructor(){super()}firstUpdated(){const slideIn=this.shadowRoot.querySelectorAll(".slide-in > blockquote"),slideIn2=this.shadowRoot.querySelectorAll(".slide-in-2 > p");setTimeout(function(){slideIn[0].className="on"},300+700);setTimeout(function(){slideIn[1].className="on"},500+700);setTimeout(function(){slideIn[2].className="on"},700+700);setTimeout(function(){slideIn2[0].className="on"},900+700);setTimeout(function(){slideIn2[1].className="on"},1100+700);setTimeout(function(){slideIn2[2].className="on"},1300+700);setTimeout(function(){slideIn2[3].className="on"},1500+700);setTimeout(function(){slideIn2[4].className="on"},1700+700)}render(){return html`
     ${SharedStyles}
     ${SharedAStyles}
     ${SharedRHiddenStyles}
@@ -358,40 +354,49 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
         opacity: 1;
       }
       section.video {
-        padding: 0;
-        box-sizing: border-box;
-        overflow: hidden;
+        position: relative;
         margin: 0;
+        padding: 0;
         max-width: 100%;
+        height: 550px;
       }
-      section.video > * {
+      section > div.video-container {
+        width: 100%;
+        max-width: 100%;
+        height: 550px;
+        overflow: hidden;
+        position: relative;
         padding: 0;
         margin: 0;
+      }
+      video {
+        left: 50%;
+        min-height: 100%;
+        min-width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      @media screen and (max-width: 977px) {
+        video {
+          min-height: 550px;
+          min-width: 978px;
+        }
       }
       .video-content {
-        width:100%;
         position: absolute;
-        z-index: 999;
         top: 250px;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, 0);
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
         background-image: radial-gradient(closest-side, rgba(51,33,12,0.25), rgba(51,33,12,0));
         background-repeat: no-repeat;
         background-position-x: center;
         background-size: 178px 178px;
         background-position-y: 100px;
-      }
-      video {
-        width: 100vw;
-        transform: translateY(calc((550px - 100%) / 2 ));
-      }
-      @media screen and (max-width: 1080px) {
-        video {
-          width: auto;
-          min-height: 550px;
-          transform: translateY(calc((550px - 100%) / 2 ));
-          transform: translateX(calc((720px - 100%) / 2 ));
-        }
       }
     </style>
     <div>
@@ -402,7 +407,7 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
       <div class="main">
         <section class="video">
           <div class="video-container">
-            <video autoplay muted id="myVideo" @ended="${e=>this.onEnded(e)}">
+            <video autoplay muted id="myVideo">
               <source src="images/intro.mp4" type="video/mp4">
             </video>
           </div>
@@ -421,7 +426,7 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
         </section>
         <section class="slide-in-2">
           <p>폐경을 전후로 신체적, 심리적, 사회적 변화를 겪고 있는</p>
-          <p>50세 이상 중년 여성들의 속마음, 누구나 한번쯤 들어보았을 거다.</p>
+          <p>50세 이상 중년 여성들의 속마음이다.</p>
           <p>엄마, 언니 어쩌면 나의 이야기일 수 밖에 없는 중년 여성의 현재를</p>
           <p>그녀들에게 직접 들어보았다. 혼란과 위기를 느끼고 있는</p>
           <p>중년 여성을 위한 지원 기관 정보도 정리했다.</p>
@@ -686,7 +691,7 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
           </picture>
         </figure>
         <p>스웨덴의 심리학자이자 &lt;여자 나이 50&gt;의 저자 퍼트리샤 튜더산달은 여성의 50세를 '성숙한, 나름대로 의의가 있는 인생을 어떻게 살아가야 하는지가 중요한 과제가 되는 나이, 아직 건강과 의욕은 충분함에도 뒤쫓아 오는 젊은 세대에게 길을 양보해야 하는 나이'라고 말한다. 그녀는 책에서 50세에서 노년 직전인 65세까지를 '제 3의 연령(third age)'이라고 정의하고 새로운 생애주기를 맞이하는 것에 대해 설명한다.</p>
-        <p>폐경으로 인한 신체적 노화와 함께 자녀의 성장, 퇴직 등으로 가정과 사회 안에서의 입지가 축소되면서 낮아지는 자아 존중감, 임박한 황혼기로 인한 위기감 속에서 늘어난 수명, 불확실한 미래라는 상황과 마주한 시기. 이 혼란기 속에서 더 이상 젊지도, 아직은 늙지도 않은 중년의 여성들은 어떤 현실을 헤치고 있을까?</p>
+        <p>폐경으로 인한 신체적 노화와 함께 자녀의 성장, 퇴직 등으로 가정과 사회 안에서의 입지가 축소되면서 낮아지는 자기 존중감, 임박한 황혼기로 인한 위기감 속에서 늘어난 수명, 불확실한 미래라는 상황과 마주한 시기. 이 혼란기 속에서 더 이상 젊지도, 아직은 늙지도 않은 중년의 여성들은 어떤 현실을 헤치고 있을까?</p>
       </section>
       <section>
         <h2>엄마로 지냈던 시간</h2>
@@ -708,10 +713,10 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
         <blockquote>40대 때부터 등산을 즐기면서 체력 관리를 잘 하고 있다고 생각했어요. 그런데도 50대가 되니까 거짓말처럼 몸이 여기저기 아프기 시작하더라고요.</blockquote>
         <p>보험 회사에 근무하는 김정순 씨(회사원, 52세)는 평소 꾸준한 운동으로 건강을 관리했음에도 갱년기에 일어나는 신체적 변화를 받아들이는데 어려움이 있다고 말한다. "40대 때부터 등산을 즐기면서 체력 관리를 잘 하고 있다고 생각했어요. 그런데도 50대가 되니까 거짓말처럼 몸이 여기저기 아프기 시작하더라고요. 결혼 후에도 계속 일을 하고 있는 터라 스마트폰 사용이나 인터넷 검색 등에 또래보다 좀 더 익숙했었는데 이젠 이것조차 예전 같지 않아요. 새로 나온 어플리케이션 사용법이나 스마트폰 기능 등을 익혔다가도 자꾸 까먹어서 아들에게 물어보면, '엄마 예전엔 안 그랬는데 왜 자꾸 똑같은 걸 물어보냐.'고 타박하는데, 마음이 좋지 않더라고요. 그래서 아이한테 엄마가 갱년기에 겪고 있는 일들, 상황을 알려주고 '네 이해와 배려가 필요하다.'고 얘기해줬어요."</p>
         <p>김재원 원장은 중년기에 특히 유의해야 할 건강 관리도 잊지 말라고 당부한다. 갱년기, 폐경기 이후 유병율이 높아지는 자궁내막암의 유병률이 점차 증가하고 있기 매년 골반초음파 검사를 실시하는 것이 필요하다고. "특히 폐경 이후 질출혈 증상이 있으면 반드시 검사를 받아야 합니다. 골반초음파를 통해 난소종양, 난소암에 대한 검진도 가능합니다. 또 골다공증검사도 정기적으로 받는 것이 좋습니다."</p>
-        <blockquote>오히려 지금 아이들이 한창 크는 30-40대 때 보다 더 많은 돈이 필요한 것 같아요.</blockquote>
+        <blockquote>오히려 지금이 아이들이 한창 컸던 30-40대 때보다 더 많은 돈이 필요한 것 같아요.</blockquote>
         <p>저성장, 고령화 시대에 퇴직은 앞당겨지고, 취업, 결혼, 자립이 늦어지는 자녀와 부모 부양을 위한 경제적 부담은 증가한 것도 중년 여성들을 힘들게 한다. 일산에 거주하는 유혜수(53세, 자영업) 씨가 은퇴를 고려할 시기에 스트레스와 부담감을 안고 새로운 사업을 시작한 이유도 여기에 있다. "요즘 세대들은 바늘 구멍을 뚫고 취업을 해도, 현실적으로 홀로 서기가 어려운 상황이잖아요. 아무리 월급을 꾸준히 모아도 집 한 채 살 돈조차 모으기 힘든 게 현실이니까. 남편도 저도 건강이 썩 좋은 상황은 아니지만 우리 노후보단 아이들의 미래를 위해 가족 사업을 시작했어요. 설상가상으로 친정 어머니가 병환으로 요양원에 계시는데, 그 병원비를 감당하는 것도 만만치 않고요. 오히려 지금 아이들이 한창 크는 30-40대 때 보다 더 많은 돈이 필요한 것 같아요."</p>
         <p>정신의학 전문의 박종석 원장은 독립기 자녀와의 관계 단절로 인해 허무함, 공허함 등을 느끼는 빈둥지 증후군을 극복하는 법에 대해 다음과 같은 방법을 알려준다. "우울감을 호소하는 대부분의 50대 중년 여성의 대부분은 급격하게 일어나는 변화를 생의 새로운 전환점으로 받아들이는 대신 스트레스를 유발 요소로 인식합니다. 또 자녀가 성인으로서 책임감을 가질 준비가 돼있지 않다고 생각할수록 더 깊은 우울감을 느끼기도 합니다. 이런 경우 자녀와의 감정적 분리가 우선적으로 필요합니다. 엄마로서의 삶 이외에 중년기, 노년기에 하고 싶은 일, 삶의 버킷 리스트 등을 반드시 만들어야 하며, 이를 위한 단기 계획, 장기 계획을 세워 하나씩 실천해나가야 합니다."</p>
-        <w50-jump href="/pt3/rosenberg" color="#e5ae0e" description="로젠버그의 자아존중감 테스트로 나를 들여다 보세요" caption="테스트 하러가기"></w50-jump>
+        <w50-jump href="/pt3/rosenberg" color="#e5ae0e" description="로젠버그의 자기존중감 테스트로 나를 들여다 보세요" caption="테스트 하러가기"></w50-jump>
         <p>박종석 원장은 갱년기의 스트레스, 불안을 공유할 수 있는 또래 집단과의 커뮤니티 활동을 통해 부정적인 감정을 바로 바로 해소하는 것도 중요하다고 말한다. 특히 기분 장애의 대표질환인 우울증 평생 유병율이 남성보다 2배 이상 더 높은 여성의 경우 (보건 복지부가 시행한 2016년도 정신질환실태 역학조사 결과는 남성은 3% 여성은 6.9%였다) 이러한 감정에 좀 더 기민하게 응할 필요가 있다. "자녀 양육과 가사에 매진한 전업 주부의 경우 마치 정년 퇴임한 가장처럼 '이제 내가 뭘 하며 살아야 하지?'라는 의문에서 오는 고독감, 가정에서 내 역할이 사라졌다는 상실감 등으로 우울감을 느끼게 됩니다. 이 감정이 일시적이라면 약 6개월 정도 안에 자신의 새로운 관심사, 일, 취미 등을 찾아 조금씩 자연스럽게 극복할 수 있습니다. 만약 우울감이 1년 이상 지속되거나 잠을 잘 못자고 아무것도 하고 싶지 않을 정도로 무기력하다면 상담센터나 병원을 찾아 전문가의 진단을 받아보는 것이 필요합니다."</p>
       </section>
       <section>
@@ -764,7 +769,7 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
       </section>
       <section>
         <h2>유리천장은 현실</h2>
-        <p>중년의 시기에 사회적, 직업적인 하강과 은퇴를 감지하는 것은 자연스러운 수순이지만 여성이 맞닥뜨리는 현실은 남성보다 좀 더 어둡다. 컨설팅 그룹에서 일하다가 이직을 준비 중인 권성은(52세, 데이터 마이닝 & 컨설팅 전문가) 씨는 여성이 남성보다 직업적 하강을 좀 더 빨리 느낄 수 밖에 없다고 말한다.</p>
+        <p>중년의 시기에 사회적, 직업적인 하강과 은퇴를 감지하는 것은 자연스러운 수순이지만 여성이 맞닥뜨리는 현실은 남성보다 좀 더 어둡다. 컨설팅 그룹에서 일하다가 이직을 준비 중인 이은성(52세, 데이터 마이닝 & 컨설팅 전문가) 씨는 여성이 남성보다 직업적 하강을 좀 더 빨리 느낄 수 밖에 없다고 말한다.</p>
         <p>"40대 후반에서 50대 초반, 직장 안에서 관리자, 임원, 경영진의 역할을 하게 되죠. 그 전엔 실무를 담당하기 때문에 경험, 노련함으로 입지를 다질 수 있어요. 그런데 여성이 그 단계를 넘어 회사의 운영, 경영에 참여하는 자리에 올라가면 동료, 상사가 대부분 남성인 상황이에요. 이 직무에선 실무적 역할 보다는 상사와의 '케미스트리'를 맞춰 의사 결정을 하고 일을 추진하는 것이 요구되는 직무 능력이죠. 충성심도 중요하고요. 그런데 여성 임원들은 우선 남성 상사와의 교감, 교류 등에서부터 어려움을 겪어요. 남성이 선호하는 커뮤니케이션 방식, 예를 들어 골프나 등산 같은 레저, 스포츠 활동에 참여가 어렵다 보니 남성보다 상대적으로 퍼포먼스가 자꾸 떨어지게 돼요. '내 능력이 부족한가?'하는 회의감까지 들기도 하고요. 그 밖에 여성 임원을 주요 분야보다는 신규 사업을 전개하는 데 필요한 '스페어 임원'으로 뽑는다든가, 리스크가 높은 일에 배정하는 경우도 왕왕 있어요."</p>
         <div class="video-wrapper">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/SXJaei1Fv2M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -779,11 +784,12 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
         <h2>중년기를 위한 지원이 필요</h2>
         <p>중년 세대가 몸과 마음, 가정과 사회 내 지위 등에 있어 겪는 큰 폭의 변화와 그에 따른 문제의 심각성에 반해 이 세대를 향한 사회적 관심은 미미하다. 생애 주기에서 청소년, 30, 40대의 위기, 노년에 관해서는 많은 책과 연구, 정책 등이 나와있지만 50-65세 중년기에 대한 연구와 콘텐츠, 정책은 그에 비해 현저히 부족한 것이 현실. 인터뷰를 위해 만난 대부분의 취재원들은 중년 세대를 위한 커뮤니티 센터, 유아, 노인 등 교육과 케어가 필요한 세대와 중년 세대의 인력을 연결하는 소단위 '생활 공동체' 등이 필요하다고 입을 모은다.</p>
         <p>정은영 씨는 중년 여성들이 연금 수령이 시작되는 65세가 되기 전, 서서히 은퇴할 수 있는 시스템이 필요하다는 의견을 제안한다. 이를 실현하기 위해 동종 업계의 비슷한 연령, 직위, 상황 등을 가진 동료들과 네트워킹을 활발히 할 필요가 있다고. 박종석 정신의학 전문의는 이러한 네트워킹을 통해 중년 여성들이 은퇴 후에도 업계의 재직자를 위한 멘토링을 해주는 것이 사회적 자존감을 회복할 수 있는 좋은 방법이라고 귀띔한다.</p>
-        <blockquote>스스로 행복해지려는 엄마를 돕자, 는 것이 우리의 모토예요.</blockquote>
+        <blockquote>엄마라는 공통점을 주축으로 여성이 자존감과 정체성을 회복하고, 각자의 경험과 역량을 교환하는 연대가 있었으면 좋겠어요.</blockquote>
         <p>서울시 50플러스 재단은 중년 이후의 세대가 이러한 '네트워킹'을 비롯해 재취업, 교육, 일자리 연결, 상담, 커뮤니티 활동 등을 지원받을 수 있는 복합 공간. &lt;엄마 난중 일기&gt;의 저자 김정은 씨는 50플러스 재단의 도움을 통해 '엄마학교협동조합'을 만들었다.</p>
         <p>"남성의 경우, 자기계발을 통해 사회적으로 인정받는 지위와 직업을 갖추는 것이 안정된 가정을 이루는 아빠가 되는 길과 크게 다르지 않아요. 이와 달리 여성은 엄마가 되기 위해 자신이 가진 것을 대부분 포기해야 하는 경우가 많아요. 자신의 삶과 가정을 동시에 유지하기 어려운 여성이 개인주의적 문화가 팽배한 현대 사회에서 '엄마'라는 이름으로 살아가기가 점점 어려워지고 있어요. 사람을 낳고, 키우고 관계를 조절하는 '엄마'라는 공통점을 주축으로 여성이 자존감과 정체성을 회복하고, 각자의 경험과 역량을 교환하는 연대가 있었으면 좋겠다고 생각해 '엄마학교협동조합'을 시작하게 됐습니다."</p>
         <p>엄마학교협동조합에선 50플러스 세대를 위한 프로그램, 커뮤니티를 활발하게 운영 중이다. 성인이 된 자녀와의 관계 전환을 위한 '2050 소통 여행' 엄마의 이모작 인생 설계를 위한 '빈둥지 리노베이션(엄마 독립지도 그리기)' 등이 대표적. 매달 엄마들의 '소셜다이닝 이야기파티'를 통해 엄마들의 네트워킹도 진행하고 있다.</p>
         <p>"가족에게 의존하거나 간섭, 지배하려는 엄마의 모습을 지양하고, 건설적인 자기계발 로드맵을 설계해 새로운 관계를 만들고 평화적인 공존을 모색할 수 있도록 동기를 부여하는 것이 엄마학교협동조합의 지향입니다." 김정은 대표의 말이다.</p>
+        <blockquote>할 수 있는 것 중에 찾아라. 상황에 대한 자신의 반응에 주목하라. 컨트롤 할 수 없는 상황에 대해 불평하느라 인생을 낭비하지 말라</blockquote>
         <p>50세 이후 세대를 위한 연구와 정책 계발은 세계적으로도 큰 관심사다. 미국의 '플러스 50 이니셔티브(Plus 50 Initiative)'는 지역 곳곳에 있는 2년제 교육기관인 커뮤니티 컬리지를 통해 중년 이후 세대의 재교육 취업을 지원하는 사업이다. 특히 교육, 건강, 사회사업 등 중년 세대에게 적합한 분야를 선별해 프로그램 운영하고 있다.</p>
         <p>1970년 대부터 고령화 현상에 대비한 일본에선 은퇴 세대의 사회 참여로 건강, 복지까지 해결 '삶의 보람 취업사업'이 주목 받고 있다. 은퇴자가 농업, 먹거리, 육아, 생활지원, 복지 등의 분야에서 취업 할 수 있는 기회를 연결하는 시스템이다. 중년과 노년 세대가 개인적으로는 삶의 보람을 느끼고, 사회적으로는 지역의 문제 해결에 기여할 수 있다는 점에서 효율적인 정책으로 평가 받고 있다.</p>
         <p>영국은 이 세대를 위한 정책이 가장 적극적으로 시행되는 나라 중 하나다. 지난 2011년 65세로 정해져 있던 법정 퇴직 연령을 폐지 한 것부터 시작된다. 2014년엔 50세 이상 노동자들이 더 길게, 더 오래 일하도록 지원하는 정책 풀러 워킹 라이브스(Fuller Working Lives)를 발표하고, 고령 구직자의 재취업을 적극 지원하는 50플러스 워크스(50 Plus Works) 등의 시스템을 가동하는 등 세밀하고 촘촘한 정책을 펼치고 있다. 민간 차원에서 진행하는 중년 여성을 위한 프로그램도 탄탄하다. 우먼 리터너즈(Women Returners)는 2~15년 이상 경력 단절을 겪고 있는 여성의 노동 시장 복귀를 돕는 민간 단체. 또 많은 기업들이 경력 단절 여성을 위한 리턴십(Returnship) 프로그램 운영하고 있다.</p>
@@ -796,7 +802,7 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
     </main>
     <footer class="footer">
       <w50-next href="/pt3" num="3" caption="중년 여성을 위하여" color="#e5ae0e"></w50-next>
-    </footer>`}}customElements.define("w50-pt2",W50Pt2);class W50Rosen extends LitElement{constructor(){super()}validRosen(){const result=this.shadowRoot.querySelector(".result"),res=this.shadowRoot.querySelectorAll(".res"),numOfFields=this.shadowRoot.querySelectorAll(".rosenberg-field").length;let answers=0;const unchecked=[];result.className="result";for(let i=0;i<res.length;i++){res[i].className="res"}for(let i=1;i<=numOfFields;i++){let current=this.shadowRoot.querySelectorAll(`[name=q${i}]`),currentVal=0;for(let j=0;j<current.length;j++){if(current[j].checked){currentVal=parseInt(current[j].value,10);answers+=currentVal;j=current.length}}if(!currentVal){unchecked.push(current)}}console.log(answers);console.log(unchecked);console.log(unchecked.length);if(!unchecked.length){result.className="result show";if(29>=answers){res[0].className="res show"}else if(29<answers&&36>=answers){res[1].className="res show"}else if(36<answers&&44>=answers){res[2].className="res show"}else if(44<answers){res[3].className="res show"}}}render(){return html`
+    </footer>`}}customElements.define("w50-pt2",W50Pt2);class W50Rosen extends LitElement{constructor(){super()}validRosen(){const result=this.shadowRoot.querySelector(".result"),res=this.shadowRoot.querySelectorAll(".res"),numOfFields=this.shadowRoot.querySelectorAll(".rosenberg-field").length;let answers=0;const unchecked=[];result.className="result";for(let i=0;i<res.length;i++){res[i].className="res"}for(let i=1;i<=numOfFields;i++){let current=this.shadowRoot.querySelectorAll(`[name=q${i}]`),currentVal=0;for(let j=0;j<current.length;j++){if(current[j].checked){currentVal=parseInt(current[j].value,10);answers+=currentVal;j=current.length}}if(!currentVal){unchecked.push(current)}}console.log(answers);console.log(unchecked.length);if(!unchecked.length){result.className="result show";if(29>=answers){res[0].className="res show"}else if(29<answers&&36>=answers){res[1].className="res show"}else if(36<answers&&44>=answers){res[2].className="res show"}else if(44<answers){res[3].className="res show"}}}render(){return html`
     <style>
       :host {
         box-sizing: border-box;
@@ -860,6 +866,18 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
         padding-left: 70px;
         padding-right: 70px;
         margin-bottom: 20px;
+      }
+      @media screen and (min-width: 361px) and (max-width: 768px){
+        .radio-group {
+          padding-left: 40px;
+          padding-right: 40px;
+        }
+      }
+      @media screen and (max-width: 360px){
+        .radio-group {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
       }
       label {
         display: block;
@@ -983,6 +1001,31 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
       }
       div.result.show, div.res.show {
         display: block;
+      }
+
+      
+      @media screen and (max-width: 360px) {
+        :host {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+        #rosenberg-form {
+          padding-top: 30px;
+        }
+        div.info {
+          padding-bottom: 30px;
+        }
+        h3, h4, p {
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+        legend {
+          margin-left: 10px;
+        }
+        .button {
+          margin-left: 20px;
+          margin-right: 20px;
+        }
       }
       </style>
     <div id="rosenberg-form" class="survey-form">
@@ -1123,9 +1166,9 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
       </div>
     </div>
     <div class="info">
-      <p>※서울사이버대학교 심리상담센터에서 제공한 자아존중감검사입니다. 더 자세한 정보는 http://cec.iscu.ac.kr 을 통해 알아보세요.</p>
+      <p>※서울사이버대학교 심리상담센터에서 제공한 자기존중감검사입니다. 더 자세한 정보는 http://cec.iscu.ac.kr 을 통해 알아보세요.</p>
     </div>
-    `}}customElements.define("w50-rosen",W50Rosen);class W50Search extends LitElement{static get properties(){return{db:{type:Array},slct2:{type:String}}}constructor(){super();this.db={seoul:{"seong-dong":[{name:"\uC131\uB3D9\uC5EC\uC131\uC778\uB825\uAC1C\uBC1C\uC13C\uD130",address:"\uC11C\uC6B8\uD2B9\uBCC4\uC2DC \uC131\uB3D9\uAD6C \uBB34\uD559\uB85C2\uAE38 54",tel:"02-3395-1500",web:"http://sd.seoulwomanup.or.kr/",desc:"\uAD6D/\uC2DC\uBE44 \uC9C0\uC6D0\uD504\uB85C\uADF8\uB7A8 (\uB0B4\uC77C\uBC30\uC6C0\uCE74\uB4DC\uC81C, \uC7AC\uC9C1\uC790 \uD6C8\uB828, \uC11C\uC6B8\uC2DC \uC9C0\uC6D0\uC0AC\uC5C5, \uC5EC\uC131\uAC00\uC871\uBD80 \uC9C0\uC6D0\uC0AC\uC5C5, \uAE30\uD0C0 \uC9C0\uC6D0 \uC9C1\uC5C5\uD6C8\uB828), \uC9C1\uC5C5\uAD50\uC721, \uC0DD\uD65C\uBB38\uD654 \uB4F1\uC758 \uC0AC\uC5C5 \uC9C4\uD589."},{name:"\uC131\uB3D9\uAD6C\uC815\uC2E0\uAC74\uAC15\uBCF5\uC9C0\uC13C\uD130",address:"\uC11C\uC6B8\uD2B9\uBCC4\uC2DC \uC131\uB3D9\uAD6C \uAE08\uD638\uB85C 114",tel:"02-2298-1080",web:"http://www.mindcare.or.kr/",desc:"\uB9CC\uC131\uC815\uC2E0\uC7A5\uC560\uC778\uAD00\uB9AC\uC0AC\uC5C5, \uC544\uB3D9/\uCCAD\uC18C\uB144 \uC815\uC2E0\uAC74\uAC15 \uC0AC\uC5C5, \uC815\uC2E0\uAC74\uAC15\uC99D\uC9C4\uC0AC\uC5C5, \uC815\uC2E0\uBCF4\uAC74 \uD658\uACBD\uC870\uC131\uC0AC\uC5C5 \uC9C4\uD589."}],gangnam:[{name:"\uC11C\uC6B8\uACFC\uD559\uAE30\uC220\uC0C8\uC77C\uC13C\uD130(\uACBD\uB825\uAC1C\uBC1C\uD615)",address:"\uC11C\uC6B8\uD2B9\uBCC4\uC2DC \uAC15\uB0A8\uAD6C \uD14C\uD5E4\uB780\uB85C7\uAE38 7-0",tel:"02-6258-5012",web:"https://www.wiset.or.kr/main.jsp",desc:"\uC5EC\uC131\uACFC\uD559\uAE30\uC220\uC778 \uBC95/\uC81C\uB3C4 \uC6B4\uC601 \uC9C0\uC6D0, \uC5EC\uC131\uACFC\uD559\uAE30\uC220\uC778 \uC77C\uC790\uB9AC \uC9C0\uC6D0, \uC5EC\uC131\uACFC\uD559\uAE30\uC220\uC778 \uAD50\uC721/\uACBD\uB825\uC9C0\uC6D0, \uC774\uACF5\uACC4 \uC5EC\uC131\uC778\uC7AC \uC721\uC131, \uC5F0\uB300 \uAD50\uB958/\uD611\uB825 \uBC0F \uD3EC\uC0C1 \uC0AC\uC5C5, \uC815\uCC45\uC5F0\uAD6C \uC870\uC0AC \uBC0F \uD3EC\uB7FC, \uACFC\uD559\uAE30\uC220 \uC820\uB354 \uD601\uC2E0 \uB4F1\uC758 \uC0AC\uC5C5 \uC9C4\uD589."},{name:"\uAC15\uB0A8\uAD6C\uC815\uC2E0\uAC74\uAC15\uBCF5\uC9C0\uC13C\uD130",address:"\uC11C\uC6B8\uD2B9\uBCC4\uC2DC \uAC15\uB0A8\uAD6C \uC77C\uC6D09\uAE38 38",tel:"02-2226-0344",web:"http://www.smilegn.kr/design/default/intro.htm",desc:"\uC815\uC2E0\uAC74\uAC15 \uC11C\uBE44\uC2A4 \uBC0F \uC9C8\uD658\uAD00\uB9AC\uAC00 \uD544\uC694\uD55C \uAC15\uB0A8\uAD6C \uC8FC\uBBFC\uC744 \uB300\uC0C1\uC73C\uB85C \uCD08\uB9AC\uC0C1\uB2F4 \uBC0F \uC0AC\uB840\uAD00\uB9AC \uC11C\uBE44\uC2A4, \uC815\uC2E0\uAC74\uAC15\uC99D\uC9C4 \uC0AC\uC5C5 (\uC0B0\uD6C4\uC6B0\uC6B8\uC99D \uC608\uBC29 \uD504\uB85C\uADF8\uB7A8, \uAC31\uB144\uAE30 \uC6B0\uC6B8\uC99D \uC608\uBC29 \uD504\uB85C\uADF8\uB7A8), \uC18C\uC544\uCCAD\uC18C\uB144 \uC815\uC2E0\uAC74\uAC15\uC99D\uC9C4 \uC0AC\uC5C5, \uC9C0\uC5ED\uC0AC\uD68C \uC9C4\uB2E8\uD3C9\uAC00 \uB4F1\uC758 \uC0AC\uC5C5 \uC9C4\uD589."},{name:"\uAC15\uB0A8\uAD6C\uC5EC\uC131\uB2A5\uB825\uAC1C\uBC1C\uC13C\uD130",address:"\uC11C\uC6B8\uC2DC \uAC15\uB0A8\uAD6C \uBD09\uC740\uC0AC\uB85C320",tel:"02-544-8440",web:"http://www.herstory.or.kr/",desc:"\uC5EC\uC131 \uCDE8\u2022\uCC3D\uC5C5 \uBC15\uB78C\uD68C, \uACBD\uB825\uB2E8\uC808 \uC5EC\uC131\uC744 \uC704\uD55C \uC7AC\uCDE8\uC5C5 \uD504\uB85C\uADF8\uB7A8, \uC9C4\uB85C\uCF54\uCE6D \uD504\uB85C\uADF8\uB7A8 \uC81C\uACF5, \uD559\uC810 \uC740\uD589\uC81C \uD504\uB85C\uADF8\uB7A8 \uC6B4\uC601, \uC5EC\uC131 \uCC3D\uC5C5\uC744 \uC704\uD55C \uC2DC\uC124 \uC9C0\uC6D0 \uB4F1\uC758 \uC0AC\uC5C5 \uC9C4\uD589. (\uC9C1\uC5C5\uAE30\uCD08\uB2A5\uB825\uAC1C\uBC1C, \uC790\uACA9\uC99D\uAD50\uC721, \uCDE8\uC5C5\uCC3D\uC5C5, \uC804\uBB38\uAC00 \uC591\uC131, \uBBF8\uB2C8\uAC15\uC88C, \uBB34\uB8CC\uAC15\uC88C, \uC815\uBD80\uC9C0\uC6D0\uD504\uB85C\uADF8\uB7A8, \uD559\uC810\uC740\uD589\uC81C\uD504\uB85C\uADF8\uB7A8, \uD2B9\uBCC4\uD504\uB85C\uADF8\uB7A8 \uB4F1\uC758 \uCE74\uD14C\uACE0\uB9AC\uBCC4 \uAC15\uC88C\uB97C \uC9C0\uC6D0\uD568.)"}]}}}onSearch(){const slct1=this.shadowRoot.querySelector("#slct1"),slct2=this.shadowRoot.querySelector("#slct2");this.shadowRoot.querySelector(".result").className=`result`;console.log("onSearch");console.log(slct1.value);console.log(slct2.value);if("seoul"===slct1.value&&("seong-dong"===slct2.value||"gangnam"===slct2.value)){console.log("success");this.shadowRoot.querySelector(".result").className=`result show ${slct2.value}`}}render(){return html`
+    `}}customElements.define("w50-rosen",W50Rosen);class W50Search extends LitElement{static get properties(){return{db:{type:Array},slct2:{type:String}}}constructor(){super();this.db={seoul:{"seong-dong":[{name:"\uC131\uB3D9\uC5EC\uC131\uC778\uB825\uAC1C\uBC1C\uC13C\uD130",address:"\uC11C\uC6B8\uD2B9\uBCC4\uC2DC \uC131\uB3D9\uAD6C \uBB34\uD559\uB85C2\uAE38 54",tel:"02-3395-1500",web:"http://sd.seoulwomanup.or.kr/",desc:"\uAD6D/\uC2DC\uBE44 \uC9C0\uC6D0\uD504\uB85C\uADF8\uB7A8 (\uB0B4\uC77C\uBC30\uC6C0\uCE74\uB4DC\uC81C, \uC7AC\uC9C1\uC790 \uD6C8\uB828, \uC11C\uC6B8\uC2DC \uC9C0\uC6D0\uC0AC\uC5C5, \uC5EC\uC131\uAC00\uC871\uBD80 \uC9C0\uC6D0\uC0AC\uC5C5, \uAE30\uD0C0 \uC9C0\uC6D0 \uC9C1\uC5C5\uD6C8\uB828), \uC9C1\uC5C5\uAD50\uC721, \uC0DD\uD65C\uBB38\uD654 \uB4F1\uC758 \uC0AC\uC5C5 \uC9C4\uD589."},{name:"\uC131\uB3D9\uAD6C\uC815\uC2E0\uAC74\uAC15\uBCF5\uC9C0\uC13C\uD130",address:"\uC11C\uC6B8\uD2B9\uBCC4\uC2DC \uC131\uB3D9\uAD6C \uAE08\uD638\uB85C 114",tel:"02-2298-1080",web:"http://www.mindcare.or.kr/",desc:"\uB9CC\uC131\uC815\uC2E0\uC7A5\uC560\uC778\uAD00\uB9AC\uC0AC\uC5C5, \uC544\uB3D9/\uCCAD\uC18C\uB144 \uC815\uC2E0\uAC74\uAC15 \uC0AC\uC5C5, \uC815\uC2E0\uAC74\uAC15\uC99D\uC9C4\uC0AC\uC5C5, \uC815\uC2E0\uBCF4\uAC74 \uD658\uACBD\uC870\uC131\uC0AC\uC5C5 \uC9C4\uD589."}],gangnam:[{name:"\uC11C\uC6B8\uACFC\uD559\uAE30\uC220\uC0C8\uC77C\uC13C\uD130(\uACBD\uB825\uAC1C\uBC1C\uD615)",address:"\uC11C\uC6B8\uD2B9\uBCC4\uC2DC \uAC15\uB0A8\uAD6C \uD14C\uD5E4\uB780\uB85C7\uAE38 7-0",tel:"02-6258-5012",web:"https://www.wiset.or.kr/main.jsp",desc:"\uC5EC\uC131\uACFC\uD559\uAE30\uC220\uC778 \uBC95/\uC81C\uB3C4 \uC6B4\uC601 \uC9C0\uC6D0, \uC5EC\uC131\uACFC\uD559\uAE30\uC220\uC778 \uC77C\uC790\uB9AC \uC9C0\uC6D0, \uC5EC\uC131\uACFC\uD559\uAE30\uC220\uC778 \uAD50\uC721/\uACBD\uB825\uC9C0\uC6D0, \uC774\uACF5\uACC4 \uC5EC\uC131\uC778\uC7AC \uC721\uC131, \uC5F0\uB300 \uAD50\uB958/\uD611\uB825 \uBC0F \uD3EC\uC0C1 \uC0AC\uC5C5, \uC815\uCC45\uC5F0\uAD6C \uC870\uC0AC \uBC0F \uD3EC\uB7FC, \uACFC\uD559\uAE30\uC220 \uC820\uB354 \uD601\uC2E0 \uB4F1\uC758 \uC0AC\uC5C5 \uC9C4\uD589."},{name:"\uAC15\uB0A8\uAD6C\uC815\uC2E0\uAC74\uAC15\uBCF5\uC9C0\uC13C\uD130",address:"\uC11C\uC6B8\uD2B9\uBCC4\uC2DC \uAC15\uB0A8\uAD6C \uC77C\uC6D09\uAE38 38",tel:"02-2226-0344",web:"http://www.smilegn.kr/design/default/intro.htm",desc:"\uC815\uC2E0\uAC74\uAC15 \uC11C\uBE44\uC2A4 \uBC0F \uC9C8\uD658\uAD00\uB9AC\uAC00 \uD544\uC694\uD55C \uAC15\uB0A8\uAD6C \uC8FC\uBBFC\uC744 \uB300\uC0C1\uC73C\uB85C \uCD08\uB9AC\uC0C1\uB2F4 \uBC0F \uC0AC\uB840\uAD00\uB9AC \uC11C\uBE44\uC2A4, \uC815\uC2E0\uAC74\uAC15\uC99D\uC9C4 \uC0AC\uC5C5 (\uC0B0\uD6C4\uC6B0\uC6B8\uC99D \uC608\uBC29 \uD504\uB85C\uADF8\uB7A8, \uAC31\uB144\uAE30 \uC6B0\uC6B8\uC99D \uC608\uBC29 \uD504\uB85C\uADF8\uB7A8), \uC18C\uC544\uCCAD\uC18C\uB144 \uC815\uC2E0\uAC74\uAC15\uC99D\uC9C4 \uC0AC\uC5C5, \uC9C0\uC5ED\uC0AC\uD68C \uC9C4\uB2E8\uD3C9\uAC00 \uB4F1\uC758 \uC0AC\uC5C5 \uC9C4\uD589."},{name:"\uAC15\uB0A8\uAD6C\uC5EC\uC131\uB2A5\uB825\uAC1C\uBC1C\uC13C\uD130",address:"\uC11C\uC6B8\uC2DC \uAC15\uB0A8\uAD6C \uBD09\uC740\uC0AC\uB85C320",tel:"02-544-8440",web:"http://www.herstory.or.kr/",desc:"\uC5EC\uC131 \uCDE8\u2022\uCC3D\uC5C5 \uBC15\uB78C\uD68C, \uACBD\uB825\uB2E8\uC808 \uC5EC\uC131\uC744 \uC704\uD55C \uC7AC\uCDE8\uC5C5 \uD504\uB85C\uADF8\uB7A8, \uC9C4\uB85C\uCF54\uCE6D \uD504\uB85C\uADF8\uB7A8 \uC81C\uACF5, \uD559\uC810 \uC740\uD589\uC81C \uD504\uB85C\uADF8\uB7A8 \uC6B4\uC601, \uC5EC\uC131 \uCC3D\uC5C5\uC744 \uC704\uD55C \uC2DC\uC124 \uC9C0\uC6D0 \uB4F1\uC758 \uC0AC\uC5C5 \uC9C4\uD589. (\uC9C1\uC5C5\uAE30\uCD08\uB2A5\uB825\uAC1C\uBC1C, \uC790\uACA9\uC99D\uAD50\uC721, \uCDE8\uC5C5\uCC3D\uC5C5, \uC804\uBB38\uAC00 \uC591\uC131, \uBBF8\uB2C8\uAC15\uC88C, \uBB34\uB8CC\uAC15\uC88C, \uC815\uBD80\uC9C0\uC6D0\uD504\uB85C\uADF8\uB7A8, \uD559\uC810\uC740\uD589\uC81C\uD504\uB85C\uADF8\uB7A8, \uD2B9\uBCC4\uD504\uB85C\uADF8\uB7A8 \uB4F1\uC758 \uCE74\uD14C\uACE0\uB9AC\uBCC4 \uAC15\uC88C\uB97C \uC9C0\uC6D0\uD568.)"}]}}}onSearch(){const slct1=this.shadowRoot.querySelector("#slct1"),slct2=this.shadowRoot.querySelector("#slct2");this.shadowRoot.querySelector(".result").className=`result`;console.log("onSearch");console.log(slct1.value);console.log(slct2.value);if("seoul"===slct1.value&&("seong-dong"===slct2.value||"gangnam"===slct2.value)){this.shadowRoot.querySelector(".result").className=`result show ${slct2.value}`}}render(){return html`
     ${SharedStyles}
     <style>
       :host {
@@ -1188,10 +1231,10 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
         margin-left: 38px;
         margin-right: 38px;
       }
-      div.result, .res{
+      div.result .res{
         display: none;
       }
-      div.result.show, .res.show{
+      div.result.show .res{
         display: block;
       }
       div.result.show.gangnam > .seong-dong {
@@ -1219,8 +1262,43 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
         margin: 1em 0;
         padding: 0;
       }
+      
+      @media screen and (max-width: 360px) {
+        :host {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+        #search-form {
+          padding-top: 30px;
+          padding-bottom: 30px;
+        }
+        div.info {
+          padding-bottom: 30px;
+        }
+        #slct1 {
+          margin-bottom: 20px;
+        }
+        h3, h4, p {
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+        legend {
+          margin-left: 10px;
+        }
+        .button {
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+        div.result .res {
+          margin-left: 0;
+          margin-right: 0;
+        }
+        p{
+          word-break: break-word;
+        }
+      }
     </style>
-    <div>
+    <div id="search-form">
       <h3>
         <span>중년 여성을 위한</span><br />
         <span>지역별 지원 기관 찾기</span>
@@ -1274,7 +1352,7 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
         
       </div>
     </div>
-    `}}customElements.define("w50-search",W50Search);class W50Pt3 extends LitElement{static get properties(){return{isCurrent:{type:Boolean}}}constructor(){super()}onAfterEnter(){scrollTo(0,0)}render(){return html`
+    `}}customElements.define("w50-search",W50Search);class W50Pt3 extends LitElement{static get properties(){return{isCurrent:{type:Boolean}}}constructor(){super()}onAfterEnter(context){this.elmid=context.params.elmid}firstUpdated(){const ros=this.shadowRoot.querySelector("#rosenberg"),sea=this.shadowRoot.querySelector("#search");if("rosenberg"===this.elmid){scrollTo(0,ros.offsetTop-102)}else if("search"===this.elmid){scrollTo(0,sea.offsetTop)}else{window.scrollTo(0,0)}}render(){return html`
     ${SharedStyles}
     <style>
     h1, blockquote {
@@ -1329,12 +1407,12 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
         <p>이 장에는 이 과정에 도움이 될 두 가지 데이터 서비스를 실었다. 현재의 나를 점검할 수 있는 테스트와 미래의 나를 위한 지지와 지원을 받을 수 사회 기관 리스트. 각자에게 필요한 것이 무엇인지 파악하고 행동으로 옮기는데 필요한 정보다.</p>
       </section>
       <section id="rosenberg">
-        <h2><span>로젠버그의 자아존중감</span><br /><span>테스트로 나를 들여다 보세요</span></h2>
-        <p>자아존중감은 자신의 쓸모와 가치에 대한 평가와 자신을 인정하고 만족하는 감정을 통합한 개념이다. 자신이 유능하고 가치가 있다고 생각할수록 자아존중감을 높아진다. 건강하고 긍정적인 자아존중감을 갖고 있다면 자신의 힘든 상황을 이겨낼 수 있다.</p>
-        <p>아래는 서울사이버대학교 상담센터에서 제공하는 자아존중감검사이다. 로젠버그의 자기존중감검사를 활용한 테스트로 스스로를 얼마나 신뢰하고 존중하는지, 자신의 모습을 얼마나 안정되게 바라보며 확신을 갖고 있는지를 체크할 수 있다. 이를 통해 현재의 나는 어떤 상태인지 들여다보자. 혹 나에 대해 좋은 평가를 하지 못했다면 다시 한번 나를 다독이며 일으켜줄 때라고 생각하면 된다.</p>
+        <h2><span>로젠버그의 자기존중감</span><br /><span>테스트로 나를 들여다 보세요</span></h2>
+        <p>자기존중감은 자신의 쓸모와 가치에 대한 평가와 자신을 인정하고 만족하는 감정을 통합한 개념이다. 자신이 유능하고 가치가 있다고 생각할수록 자기존중감을 높아진다. 건강하고 긍정적인 자기존중감을 갖고 있다면 자신의 힘든 상황을 이겨낼 수 있다.</p>
+        <p>아래는 서울사이버대학교 상담센터에서 제공하는 자기존중감검사이다. 로젠버그의 자기존중감검사를 활용한 테스트로 스스로를 얼마나 신뢰하고 존중하는지, 자신의 모습을 얼마나 안정되게 바라보며 확신을 갖고 있는지를 체크할 수 있다. 이를 통해 현재의 나는 어떤 상태인지 들여다보자. 혹 나에 대해 좋은 평가를 하지 못했다면 다시 한번 나를 다독이며 일으켜줄 때라고 생각하면 된다.</p>
         <w50-rosen></w50-rosen>
       </section>
-      <section>
+      <section id="search">
         <h2>
           중년의 어려움 함께 해결해요<br>
           중년 여성을 위한 전국 시군구별<br>
@@ -1358,7 +1436,7 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
       </section>
       <section style="padding: 0;"></section>
     </main>
-    `}}customElements.define("w50-pt3",W50Pt3);class W50App extends LitElement{static get properties(){return{currentPart:{type:Number}}}constructor(){super();const partRoutes=[{path:"/pt1",component:"w50-pt1",caption:"\uC5C4\uB9C8\uB294 \uC544\uD504\uB2E4"},{path:"/pt2",component:"w50-pt2",caption:"\uB0B4 \uC790\uB9AC\uAC00 \uC5C6\uB2E4"},{path:"/pt3",component:"w50-pt3",caption:"\uC911\uB144 \uC5EC\uC131\uC744 \uC704\uD558\uC5EC"}];this.partRoutes=partRoutes;const routes=partRoutes.concat([{path:"/pt3/:elmid",component:"w50-pt3"},{path:"/",component:"w50-pt0"},{path:"(.*)",component:"w50-404"}]);this.routes=routes;this.currentPart=this.getCurrentPart()}getPathname(){return location.pathname}getCurrentPart(){const path=this.getPathname();let part=path[3];part=part?part:"/";return part}setRoutes(r){const router=new Router(this.shadowRoot.querySelector("#outlet"));router.setRoutes(r)}firstUpdated(){this.setRoutes(this.routes);window.addEventListener("vaadin-router-location-changed",()=>{this.currentPart=this.getCurrentPart()})}render(){return html`
+    `}}customElements.define("w50-pt3",W50Pt3);class W50App extends LitElement{static get properties(){return{currentPart:{type:Number}}}constructor(){super();const partRoutes=[{path:"/",component:"w50-pt1",caption:"\uC5C4\uB9C8\uB294 \uC544\uD504\uB2E4"},{path:"/pt2",component:"w50-pt2",caption:"\uB0B4 \uC790\uB9AC\uAC00 \uC5C6\uB2E4"},{path:"/pt3",component:"w50-pt3",caption:"\uC911\uB144 \uC5EC\uC131\uC744 \uC704\uD558\uC5EC"}];this.partRoutes=partRoutes;const routes=partRoutes.concat([{path:"/pt3/:elmid",component:"w50-pt3"},{path:"(.*)",component:"w50-404"}]);this.routes=routes;this.currentPart=this.getCurrentPart()}getPathname(){return location.pathname}getCurrentPart(){const path=this.getPathname();let part=path[3];part=part?part:"/";return part}setRoutes(r){const router=new Router(this.shadowRoot.querySelector("#outlet"));router.setRoutes(r)}firstUpdated(){this.setRoutes(this.routes);window.addEventListener("vaadin-router-location-changed",()=>{this.currentPart=this.getCurrentPart()});const h=this.shadowRoot.querySelector("nav"),d=this.shadowRoot.querySelector("w50-pt0");let stuck=!1;window.onscroll=function(){let distance=h.offsetTop-window.pageYOffset,offset=window.pageYOffset,stickPoint=d.clientHeight;if(0>=distance&&!stuck){h.style.position="fixed";h.style.top="0";stuck=!0}else if(stuck&&offset<=stickPoint){h.style.position="static";stuck=!1}}}render(){return html`
     <style>
       :host {
         --not-current: #b3a090;
@@ -1372,22 +1450,19 @@ const customElement=tagName=>clazz=>{window.customElements.define(tagName,clazz)
         
         display: flex;
         flex-direction: column;
-        
       }
       nav {
         width: 100%;
         height: 102px;
         display: block;
-        position: relative;
         order: 2;
+        z-index: 999;
       }
       #outlet {
         order: 3;
       }
-      #outlet.main {
-        order: 1;
-      }
     </style>
-    <nav><w50-nav .currentPart="${this.currentPart-1}" .routes="${this.partRoutes}" class="${"/"===this.currentPart?"homepage":""}"></w50-nav></nav>
-    <div id="outlet" class="${"/"===this.currentPart?"main":""}"></div>
+    <w50-pt0></w50-pt0>
+    <nav><w50-nav .currentPart="${"/"===this.currentPart?0:this.currentPart-1}" .routes="${this.partRoutes}" ></w50-nav></nav>
+    <div id="outlet"></div>
     `}}customElements.define("w50-app",W50App);export{decorators as $decorators,updatingElement as $updatingElement,litElement as $litElement,vaadinRouter as $vaadinRouter,defaultTemplateProcessor$1 as $defaultTemplateProcessor,directive$1 as $directive,dom as $dom,modifyTemplate as $modifyTemplate,part as $part,parts as $parts,render$1 as $render,shadyRender as $shadyRender,templateFactory$1 as $templateFactory,templateInstance as $templateInstance,templateResult as $templateResult,template as $template,litHtml as $litHtml,sharedAStyles as $sharedA$styles,sharedLiStyles as $sharedLiStyles,sharedRhiddenStyles as $sharedRhiddenStyles,sharedStyles as $sharedStyles,customElement,property,query,queryAll,eventOptions,notEqual,UpdatingElement,notEqual as notEqual$1,UpdatingElement as UpdatingElement$1,customElement as customElement$1,property as property$1,query as query$1,queryAll as queryAll$1,eventOptions as eventOptions$1,html,svg,LitElement,Router,Resolver,DefaultTemplateProcessor,defaultTemplateProcessor,directive,isDirective,isCEPolyfill,reparentNodes,removeNodes,removeNodesFromTemplate,insertNodeIntoTemplate,noChange,isPrimitive,AttributeCommitter,AttributePart,NodePart,BooleanAttributePart,PropertyCommitter,PropertyPart,EventPart,parts$1 as parts,render,html as html$1,svg as svg$1,TemplateResult,render$2 as render$1,templateFactory,templateCaches,TemplateInstance,TemplateResult as TemplateResult$1,SVGTemplateResult,marker,nodeMarker,markerRegex,rewritesStyleAttribute,Template,isTemplatePartActive,createMarker,lastAttributeNameRegex,TemplateResult as TemplateResult$2,SVGTemplateResult as SVGTemplateResult$1,marker as marker$1,nodeMarker as nodeMarker$1,markerRegex as markerRegex$1,rewritesStyleAttribute as rewritesStyleAttribute$1,Template as Template$1,isTemplatePartActive as isTemplatePartActive$1,createMarker as createMarker$1,lastAttributeNameRegex as lastAttributeNameRegex$1,DefaultTemplateProcessor as DefaultTemplateProcessor$1,defaultTemplateProcessor as defaultTemplateProcessor$1,TemplateInstance as TemplateInstance$1,noChange as noChange$1,isPrimitive as isPrimitive$1,AttributeCommitter as AttributeCommitter$1,AttributePart as AttributePart$1,NodePart as NodePart$1,BooleanAttributePart as BooleanAttributePart$1,PropertyCommitter as PropertyCommitter$1,PropertyPart as PropertyPart$1,EventPart as EventPart$1,isCEPolyfill as isCEPolyfill$1,reparentNodes as reparentNodes$1,removeNodes as removeNodes$1,templateFactory as templateFactory$1,templateCaches as templateCaches$1,html as html$2,svg as svg$2,SharedAStyles,SharedLiStyles,SharedRHiddenStyles,SharedStyles};

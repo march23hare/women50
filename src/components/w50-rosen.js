@@ -33,6 +33,9 @@ class W50Rosen extends LitElement {
       }
     }
 
+    console.log(answers);
+    console.log(unchecked.length);
+
     if(!unchecked.length) {
       result.className = 'result show';
       if( answers <= 29 ) {
