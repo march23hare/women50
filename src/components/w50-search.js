@@ -344,6 +344,10 @@ class W50Search extends LitElement {
           word-break: break-word;
         }
       }
+      
+      p.info {
+        margin-bottom: 1.33em;
+      }
     </style>
     <div id="search-form">
       <h3>

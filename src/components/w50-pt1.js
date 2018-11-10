@@ -1,6 +1,7 @@
 import { LitElement, html } from '@polymer/lit-element';
 
 import { SharedStyles } from './shared-styles';
+import { SharedRevealStyles } from './shared-reveal-styles';
 
 import './w50-jump';
 import './w50-next';
@@ -22,13 +23,38 @@ class W50Pt1 extends LitElement {
     super();
   }
 
-  onAfterEnter(context) {
-    scrollTo(0, 0);
+  disconnectedCallback () {
+    window.removeEventListener('scroll', this.onscrollCallback);
+  }
+
+  firstUpdated() {
+    const h1s = this.shadowRoot.querySelectorAll('h1');
+    const h2s = this.shadowRoot.querySelectorAll('h2');
+    const bls = this.shadowRoot.querySelectorAll('blockquote');
+    
+    this.onscrollCallback = function(e) {
+      let offset = window.pageYOffset;
+
+      const revealHandler = (el, i) => {
+        let distance = el.getBoundingClientRect().y || el.getBoundingClientRect().top;
+        if (distance < 500 && el.className.indexOf('reveal') < 0) {
+          el.className = el.className + ' reveal';
+        }
+      }
+
+      h1s.forEach(revealHandler);
+      h2s.forEach(revealHandler);
+      bls.forEach(revealHandler);
+    };
+
+    this.onscrollCallback();
+    window.addEventListener('scroll', this.onscrollCallback);
   }
 
   render() {
     return html`
     ${SharedStyles}
+    ${SharedRevealStyles}
     <style>
       h1, blockquote {
         color: #669aa7;

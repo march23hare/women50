@@ -1,5 +1,6 @@
 import { LitElement, html } from '@polymer/lit-element';
 import { SharedStyles } from './shared-styles';
+import { SharedRevealStyles } from './shared-reveal-styles';
 
 import './w50-rosen';
 import './w50-search';
@@ -20,21 +21,73 @@ class W50Pt3 extends LitElement {
     this.elmid = context.params.elmid;
   }
 
+  disconnectedCallback () {
+    window.removeEventListener('scroll', this.onscrollCallback);
+  }
+
   firstUpdated() {
-    const ros = this.shadowRoot.querySelector('#rosenberg');
-    const sea = this.shadowRoot.querySelector('#search');
-    if (this.elmid === 'rosenberg') {
-      scrollTo(0, ros.offsetTop - 102);
-    } else if (this.elmid === 'search') {
-      scrollTo(0, sea.offsetTop);
-    } else {
-      window.scrollTo(0, 0);
-    }
+    const h1s = this.shadowRoot.querySelectorAll('h1');
+    const h2s = this.shadowRoot.querySelectorAll('h2');
+    const bls = this.shadowRoot.querySelectorAll('blockquote');
+    
+    this.onscrollCallback = function(e) {
+      let offset = window.pageYOffset;
+
+      const revealHandler = (el, i) => {
+        let distance = el.getBoundingClientRect().top;
+        if (distance < 500 && el.className.indexOf('reveal') < 0) {
+          el.className = el.className + ' reveal';
+        }
+      }
+
+      h1s.forEach(revealHandler);
+      h2s.forEach(revealHandler);
+      bls.forEach(revealHandler);
+    };
+
+    this.onscrollCallback();
+    window.addEventListener('scroll', this.onscrollCallback);
+
+    // ========================
+    if (!this.elmid) return;
+    const targetedEl = this.shadowRoot.querySelector(`#${this.elmid}`);
+    const lastSibling = this.shadowRoot.querySelector('.footer');
+    const intervalCheckLS = setInterval(() => {
+      if (lastSibling.clientHeight > 0) {
+        console.log(targetedEl.clientHeight);
+        targetedEl.scrollIntoView();
+        window.scrollBy(0, -102);
+        clearInterval(intervalCheckLS);
+      }
+    }, 100);
+
+    window.Kakao.Link.createDefaultButton({
+      container: this.shadowRoot.querySelector('#kakao-share'),
+      objectType: 'feed',
+      imageUrl: 'https://women50.net/images/kakao-share.png',
+      content: {
+        title: '아름다운 뉴스 - 인생 2 막, 여자 나이 50',
+        description: '아름다운 뉴스 - 인생 2 막, 여자 나이 50',
+        link: {
+          mobileWebUrl: 'https://women50.net',
+          webUrl: 'https://women50.net'
+        }
+      }
+    });
+  }
+
+  copyURL() {
+    const urlInput = document.querySelector('#url-for-copy');
+    urlInput.value = 'https://women50.net';
+    urlInput.select();
+    document.execCommand('copy');
+    alert(`이 사이트의 주소 ${urlInput.value} 가 복사되었습니다.\n붙여넣기(ctrl+v)로 사용하세요`);
   }
 
   render() {
     return html`
     ${SharedStyles}
+    ${SharedRevealStyles}
     <style>
     h1, blockquote {
       color: #e5ae0e;
@@ -44,8 +97,9 @@ class W50Pt3 extends LitElement {
       background-color: #F7F6F4;
     }
 
-    footer section:first-child ul {
-      list-style: disc inside ;
+    footer ul {
+      list-style: disc inside;
+      padding-left: 0;
     }
     .credit {
       max-width: 768px;
@@ -113,9 +167,13 @@ class W50Pt3 extends LitElement {
               <li><span class="title">영상·일러스트</span><span class="content">VCRWORKS</span></li>
             </ul>
           </div>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://women50.net" target="_blank">facebook share</a>
+          <a href="https://twitter.com/intent/tweet?text=아름다운 뉴스 - 인생 2 막, 여자 나이 50&url=https://women50.net" target="_blank">twitter share</a>
+          <span id="kakao-share"></span>
+          <a href="javascript:(function ${this.copyURL})()">copy url</a>
         </footer>
       </section>
-      <section style="padding: 0;"></section>
+      <section class="section-placeholder" style="padding: 0;" disabled></section>
     </main>
     `;
   }

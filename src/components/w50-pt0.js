@@ -62,6 +62,11 @@ class W50Pt0 extends LitElement {
         display: flex;
         justify-content: space-between;
       }
+      @media screen and (max-width: 360px) {
+        .header {
+          padding-left: 20px;
+        }
+      }
       .main {
         width: 100%;
         background-color: var(--section-bg);
@@ -193,12 +198,11 @@ class W50Pt0 extends LitElement {
     <div>
       <header class="header">
         <a href="#">아름다운 뉴스</a>
-        <a href="#" class="sns-share"><span class="readable-hidden">공유</span></a>
       </header>
       <div class="main">
         <section class="video">
           <div class="video-container">
-            <video autoplay muted id="myVideo">
+            <video autoplay muted id="myVideo" poster="images/poster.jpg">
               <source src="images/intro.mp4" type="video/mp4">
             </video>
           </div>
@@ -206,7 +210,7 @@ class W50Pt0 extends LitElement {
             <h1>
               <span>인생 2막,</span>
               <span>여자 나이</span>
-              <span> 50</span>
+              <span>50</span>
             </h1>
           </div>
         </section>

@@ -7,7 +7,16 @@
   <title>인생 2 막, 여자 나이 50 | 아름다운 뉴스</title>
   <base href="/">
   <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <script type='text/javascript'>
+    //<![CDATA[
+    window.Kakao = Kakao;
+    Kakao.init('9211e1c9be76d8d58b123db0dec908cd');
+    //]]>
+  </script>
+
   <script type="module" src="src/components/w50-app.js"></script>
+
   <style>
     @font-face{
       font-family: "nJoyStories";
@@ -55,5 +64,7 @@
 </head>
 <body id="origin-body">
   <w50-app></w50-app>
+  <span id="kakao-link-btn"></span>
+  <input id="url-for-copy" type="text" style="opacity: 0; height: 1px; overflow: hidden; width: 1px; position: absolute; top: -1000px; left: -1000px; z-index: -1000;" value="https://women50.net" />
 </body>
 </html>

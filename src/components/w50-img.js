@@ -45,7 +45,7 @@ class W50Img extends LitElement {
         margin-right: auto;
         z-index: 0;
       }
-      figure:hover::after {
+      figure::after {
         content: "";
         background-image: url("images/mag.png");
         background-size: contain;
