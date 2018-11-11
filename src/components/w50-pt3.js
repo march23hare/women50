@@ -48,32 +48,37 @@ class W50Pt3 extends LitElement {
     this.onscrollCallback();
     window.addEventListener('scroll', this.onscrollCallback);
 
+    const lastSibling = this.shadowRoot.querySelector('.footer');
+    const kakaoShare = this.shadowRoot.querySelector('#kakao-share');
+    const intervalCheckLS_1 = setInterval(() => {
+      if (lastSibling.clientHeight > 0) {
+        window.Kakao.Link.createDefaultButton({
+          container: kakaoShare,
+          objectType: 'feed',
+          content: {
+            title: '아름다운 뉴스 - 인생 2 막, 여자 나이 50',
+            imageUrl: 'https://women50.net/images/poster.jpg',
+            link: {
+              mobileWebUrl: 'https://women50.net',
+              webUrl: 'https://women50.net'
+            }
+          }
+        });
+        clearInterval(intervalCheckLS_1);
+      }
+    }, 100);
+
     // ========================
     if (!this.elmid) return;
     const targetedEl = this.shadowRoot.querySelector(`#${this.elmid}`);
-    const lastSibling = this.shadowRoot.querySelector('.footer');
     const intervalCheckLS = setInterval(() => {
       if (lastSibling.clientHeight > 0) {
-        console.log(targetedEl.clientHeight);
         targetedEl.scrollIntoView();
         window.scrollBy(0, -102);
         clearInterval(intervalCheckLS);
       }
     }, 100);
 
-    window.Kakao.Link.createDefaultButton({
-      container: this.shadowRoot.querySelector('#kakao-share'),
-      objectType: 'feed',
-      imageUrl: 'https://women50.net/images/kakao-share.png',
-      content: {
-        title: '아름다운 뉴스 - 인생 2 막, 여자 나이 50',
-        description: '아름다운 뉴스 - 인생 2 막, 여자 나이 50',
-        link: {
-          mobileWebUrl: 'https://women50.net',
-          webUrl: 'https://women50.net'
-        }
-      }
-    });
   }
 
   copyURL() {
@@ -169,7 +174,7 @@ class W50Pt3 extends LitElement {
           </div>
           <a href="https://www.facebook.com/sharer/sharer.php?u=https://women50.net" target="_blank">facebook share</a>
           <a href="https://twitter.com/intent/tweet?text=아름다운 뉴스 - 인생 2 막, 여자 나이 50&url=https://women50.net" target="_blank">twitter share</a>
-          <span id="kakao-share"></span>
+          <button id="kakao-share">kakao share</span>
           <button @click="${this.copyURL}">copy url</button>
         </footer>
       </section>
