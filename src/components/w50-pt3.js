@@ -170,7 +170,7 @@ class W50Pt3 extends LitElement {
           <a href="https://www.facebook.com/sharer/sharer.php?u=https://women50.net" target="_blank">facebook share</a>
           <a href="https://twitter.com/intent/tweet?text=아름다운 뉴스 - 인생 2 막, 여자 나이 50&url=https://women50.net" target="_blank">twitter share</a>
           <span id="kakao-share"></span>
-          <a href="javascript:(function ${this.copyURL})()">copy url</a>
+          <button @click="${this.copyURL}">copy url</button>
         </footer>
       </section>
       <section class="section-placeholder" style="padding: 0;" disabled></section>
