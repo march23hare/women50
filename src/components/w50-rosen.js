@@ -33,9 +33,6 @@ class W50Rosen extends LitElement {
       }
     }
 
-    console.log(answers);
-    console.log(unchecked.length);
-
     if(!unchecked.length) {
       result.className = 'result show';
       if( answers <= 29 ) {
@@ -47,6 +44,16 @@ class W50Rosen extends LitElement {
       } else if ( answers > 44 ) {
         res[3].className = 'res show';
       }
+
+      // result
+      let speed = 5;
+      const scrolling = setInterval(() => {
+        window.scrollBy(0, 5);
+        speed+=10;
+        if(result.getBoundingClientRect().top < 200){
+          clearInterval(scrolling);
+        }
+      }, speed);
     }
   }
 
@@ -276,6 +283,9 @@ class W50Rosen extends LitElement {
           margin-right: 20px;
         }
       }
+      a, a:visited {
+        color: inherit;
+      }
       </style>
     <div id="rosenberg-form" class="survey-form">
       <h3><span>로젠버그(Rosenberg)의</span><br /><span>자기존중감검사</span></h3>
@@ -415,7 +425,7 @@ class W50Rosen extends LitElement {
       </div>
     </div>
     <div class="info">
-      <p>※서울사이버대학교 심리상담센터에서 제공한 자기존중감검사입니다. 더 자세한 정보는 http://cec.iscu.ac.kr 을 통해 알아보세요.</p>
+      <p>※서울사이버대학교 심리상담센터에서 제공한 자기존중감검사입니다. 더 자세한 정보는 <a href="http://cec.iscu.ac.kr">http://cec.iscu.ac.kr</a> 을 통해 알아보세요.</p>
     </div>
     `;
   }

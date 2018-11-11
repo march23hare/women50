@@ -108,6 +108,10 @@ export const SharedStyles = html`
       margin-right: 20px;
       padding: 0;
     }
+    section > .video-wrapper {
+      margin-left: 0;
+      margin-right: 0;
+    }
     figure {
       padding: 0;
       margin-left: 0;
