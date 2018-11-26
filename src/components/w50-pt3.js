@@ -1,6 +1,7 @@
 import { LitElement, html } from '@polymer/lit-element';
 import { SharedStyles } from './shared-styles';
 import { SharedRevealStyles } from './shared-reveal-styles';
+import { SharedRHiddenStyles } from './shared-rhidden-styles';
 
 import './w50-rosen';
 import './w50-search';
@@ -93,6 +94,7 @@ class W50Pt3 extends LitElement {
     return html`
     ${SharedStyles}
     ${SharedRevealStyles}
+    ${SharedRHiddenStyles}
     <style>
     h1, blockquote {
       color: #e5ae0e;
@@ -136,6 +138,43 @@ class W50Pt3 extends LitElement {
       margin-left: 8px;
       color: #B3A090;
     }
+    .share {
+      text-align: center;
+      width: 100%;
+      margin-bottom: 60px;
+    }
+    .share h3,
+    .share h6 {
+      font-family: "SPMyungJo", serif;
+    }
+    .share h3 {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .share h6 {
+      font-size: 14px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    .share button {
+      width: 44px;
+      height: 44px;
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+    }
+    .share button.fb {
+      background: url("images/share_fb.png");
+    }
+    .share button.tw {
+      background: url("images/share_tw.png");
+    }
+    .share button.kk {
+      background: url("images/share_kk.png");
+    }
+    .share button.link {
+      background: url("images/share_link.png");
+    }
     </style>
     <main class="main">
       <section>
@@ -160,7 +199,20 @@ class W50Pt3 extends LitElement {
         </h2>
         <p>갱년기 여성을 위한 건강 교육을 해주는 보건소 프로그램부터 가정 내 관계 개선을 위한 프로그램을 운영하는 건강가정지원센터, 취업에 관한 지원이 가능한 여성개발원 등 찾아보면 중년 여성의 고민을 함께 나눌 다양한 기관이 있다는 걸 알고 있는가. 같은 상황을 겪고 있는 여성들을 만나 커뮤니티를 꾸릴 수도 있다. 당신에게 지금 필요한 지원과 지지는 무엇인지 생각해 본 후, 지역별 관련 서비스 기관을 찾아보자.</p>
         <w50-search></w50-search>
+        
         <footer class="footer">
+        <div class="share">
+          <h3>
+            <span>공감과 위로가 필요한 다른 누군가에게,</span>
+            <br />
+            <span>사이트를 공유해주세요.</span>
+          </h3>
+          <h6>사이트 공유하기</h6>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://women50.net" target="_blank"><button class="fb"><span class="readable-hidden">facebook share</span></button></a>
+          <a href="https://twitter.com/intent/tweet?text=아름다운 뉴스 - 인생 2 막, 여자 나이 50&url=https://women50.net" target="_blank"><button class="tw"><span class="readable-hidden">twitter share</span></button></a>
+          <button id="kakao-share" class="kk"><span class="readable-hidden">kakao share</span></button>
+          <button @click="${this.copyURL}" class="link"><span class="readable-hidden">copy url</span></button>
+        </div>
           <div class="credit">
             <p clss="issue-date">발행일: 2018.11.01.</p>
             <ul>
@@ -172,10 +224,6 @@ class W50Pt3 extends LitElement {
               <li><span class="title">영상·일러스트</span><span class="content">VCRWORKS</span></li>
             </ul>
           </div>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://women50.net" target="_blank">facebook share</a>
-          <a href="https://twitter.com/intent/tweet?text=아름다운 뉴스 - 인생 2 막, 여자 나이 50&url=https://women50.net" target="_blank">twitter share</a>
-          <button id="kakao-share">kakao share</span>
-          <button @click="${this.copyURL}">copy url</button>
         </footer>
       </section>
       <section class="section-placeholder" style="padding: 0;" disabled></section>
